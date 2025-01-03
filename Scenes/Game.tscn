@@ -1,23 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0uj1wwty4fmi"]
+[gd_scene load_steps=6 format=3 uid="uid://c0uj1wwty4fmi"]
 
 [ext_resource type="Texture2D" uid="uid://c1pomfppeet6v" path="res://Sprites/goofy.jpg" id="1_5o5py"]
 [ext_resource type="Script" path="res://Scripts/Player/Movement.gd" id="1_mi8x6"]
+[ext_resource type="Texture2D" uid="uid://diotkw6mvpsql" path="res://Sprites/glorp.png" id="3_hv76w"]
+[ext_resource type="Script" path="res://Scripts/Player/Aiming.gd" id="4_s76yg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7oqx"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(578, 502)
 script = ExtResource("1_mi8x6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(571, 498)
 shape = SubResource("CapsuleShape2D_l7oqx")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-position = Vector2(570.5, 498.5)
 scale = Vector2(0.015097, 0.0266552)
 texture = ExtResource("1_5o5py")
+
+[node name="DebugAim" type="Sprite2D" parent="Player" node_paths=PackedStringArray("sprite", "parent")]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_hv76w")
+script = ExtResource("4_s76yg")
+sprite = NodePath(".")
+parent = NodePath("..")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(575, 326)
