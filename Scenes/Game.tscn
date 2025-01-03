@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0uj1wwty4fmi"]
+[gd_scene load_steps=7 format=3 uid="uid://c0uj1wwty4fmi"]
 
 [ext_resource type="Texture2D" uid="uid://c1pomfppeet6v" path="res://Sprites/goofy.jpg" id="1_5o5py"]
 [ext_resource type="Script" path="res://Scripts/Player/Movement.gd" id="1_mi8x6"]
+[ext_resource type="PackedScene" uid="uid://cxssj53riqjbx" path="res://Prefabs/projectile.tscn" id="2_24kvk"]
 [ext_resource type="Texture2D" uid="uid://diotkw6mvpsql" path="res://Sprites/glorp.png" id="3_hv76w"]
 [ext_resource type="Script" path="res://Scripts/Player/Aiming.gd" id="4_s76yg"]
 
@@ -20,12 +21,16 @@ shape = SubResource("CapsuleShape2D_l7oqx")
 scale = Vector2(0.015097, 0.0266552)
 texture = ExtResource("1_5o5py")
 
-[node name="DebugAim" type="Sprite2D" parent="Player" node_paths=PackedStringArray("sprite", "parent")]
+[node name="DebugAim" type="Sprite2D" parent="Player" node_paths=PackedStringArray("sprite", "parent", "projectileContainer")]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_hv76w")
 script = ExtResource("4_s76yg")
 sprite = NodePath(".")
 parent = NodePath("..")
+projectileTemplate = ExtResource("2_24kvk")
+projectileContainer = NodePath("../../ProjectileContainer")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(575, 326)
+
+[node name="ProjectileContainer" type="Node2D" parent="."]
