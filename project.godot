@@ -18,7 +18,7 @@ config/icon="res://Sprites/icon.svg"
 [autoload]
 
 CameraController="*res://Scripts/Camera/CameraController.gd"
-EnemyManager="*res://Scripts/EnemyManager.gd"
+EnemyManager="*res://Scripts/Enemies/EnemyManager.gd"
 PlayerManager="*res://Scripts/Player/PlayerManager.gd"
 
 [display]

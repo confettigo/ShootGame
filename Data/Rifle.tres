@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://c5c18kslkmmw2"]
+
+[ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_21mlq"]
+
+[resource]
+script = ExtResource("1_21mlq")
+damage = 1
+shootingCooldown = 0.1

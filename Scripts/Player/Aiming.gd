@@ -4,10 +4,11 @@ extends Node
 @export var parent : CharacterBody2D
 @export var projectileTemplate : PackedScene
 @export var projectileContainer : Node2D
-@export var baseCooldown : float
+# @export var baseCooldown : float
+@export var currentWeapon : Weapon
 
+@onready var timer = currentWeapon.shootingCooldown 
 var isShooting : bool
-var timer = baseCooldown 
 var canShoot : bool
 var aimDir = Vector2(0,-1)
 
@@ -30,13 +31,18 @@ func _process(delta: float) -> void:
 
 	if !canShoot:
 		timer -= delta
-		if timer <=0:
+		if timer <= 0:
 			canShoot = true
 
 	if isShooting && canShoot:
 		canShoot = false
-		timer = baseCooldown
+		timer = currentWeapon.shootingCooldown
 		var projectile : Projectile = projectileTemplate.instantiate()
 		projectileContainer.add_child(projectile)
 		projectile.position = parent.position
 		projectile.setup(aimDir.normalized())
+
+func changeWeapon(newWeapon : Weapon):
+	currentWeapon = newWeapon
+	timer = 0
+	canShoot = true

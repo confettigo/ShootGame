@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c7a0y3mb6g6yh"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_nv1xx"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_nv1xx"]
 [ext_resource type="PackedScene" uid="uid://cbtnm7ps58w86" path="res://Prefabs/enemyprojectile.tscn" id="2_0qfu3"]
 [ext_resource type="PackedScene" uid="uid://cs033bg2tvaoe" path="res://Prefabs/health.tscn" id="2_unvvp"]
 [ext_resource type="Texture2D" uid="uid://bxu5g8ulhuot3" path="res://Sprites/Enemies/enemycat.jpg" id="3_mbv0v"]
