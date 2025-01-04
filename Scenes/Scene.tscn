@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvptplpytivq6"]
+[gd_scene load_steps=12 format=3 uid="uid://bvptplpytivq6"]
 
 [ext_resource type="PackedScene" uid="uid://c7a0y3mb6g6yh" path="res://Prefabs/enemy.tscn" id="1_hn02x"]
 [ext_resource type="Script" path="res://Scripts/Player/Movement.gd" id="1_o1rxt"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cxssj53riqjbx" path="res://Prefabs/projectile.tscn" id="5_dqnv8"]
 [ext_resource type="Texture2D" uid="uid://dk4141bb8hbdm" path="res://Sprites/temp.png" id="6_yjbl5"]
 [ext_resource type="Script" path="res://Scripts/Camera/CameraScript.gd" id="7_71g0y"]
+[ext_resource type="PackedScene" uid="uid://7ht4jq1yda18" path="res://Prefabs/cover.tscn" id="9_x28nl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s2i3d"]
 size = Vector2(239, 7)
@@ -18,15 +19,19 @@ size = Vector2(239, 7)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(125, 137)
-offset = Vector2(0, -50)
+offset = Vector2(0, -40)
 script = ExtResource("7_71g0y")
 player = NodePath("../Player")
 
-[node name="Bounds" type="StaticBody2D" parent="Camera2D"]
+[node name="Bounds" type="StaticBody2D" parent="Camera2D" groups=["bounds"]]
 position = Vector2(5, 35)
 
 [node name="Bottom" type="CollisionShape2D" parent="Camera2D/Bounds"]
 position = Vector2(-10, 14)
+shape = SubResource("RectangleShape2D_s2i3d")
+
+[node name="Top" type="CollisionShape2D" parent="Camera2D/Bounds"]
+position = Vector2(-10, -216)
 shape = SubResource("RectangleShape2D_s2i3d")
 
 [node name="Right" type="CollisionShape2D" parent="Camera2D/Bounds"]
@@ -51,6 +56,7 @@ scale = Vector2(0.015097, 0.0266552)
 texture = ExtResource("2_bxjra")
 
 [node name="DebugAim" type="Sprite2D" parent="Player" node_paths=PackedStringArray("sprite", "parent", "projectileContainer")]
+modulate = Color(1, 0.545098, 1, 0.454902)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_28ao6")
 script = ExtResource("4_uc2nf")
@@ -88,7 +94,7 @@ position = Vector2(92, -92)
 position = Vector2(69, -150)
 
 [node name="Enemy7" parent="Level" instance=ExtResource("1_hn02x")]
-position = Vector2(132, -154)
+position = Vector2(187, -146)
 
 [node name="Enemy8" parent="Level" instance=ExtResource("1_hn02x")]
 position = Vector2(218, -146)
@@ -113,3 +119,8 @@ position = Vector2(186, -437)
 
 [node name="Enemy15" parent="Level" instance=ExtResource("1_hn02x")]
 position = Vector2(80, -491)
+
+[node name="Cover" parent="Level" instance=ExtResource("9_x28nl")]
+
+[node name="Cover2" parent="Level" instance=ExtResource("9_x28nl")]
+position = Vector2(201, -118)

@@ -15,6 +15,9 @@ func _physics_process(delta):
 	position += direction * speed * delta
 
 func _on_projectile_body_entered(body:Node2D) -> void:
+	if body.is_in_group("bounds"):
+		print("deletos")
+		queue_free()
 	if body.is_in_group("damageable"):
 		queue_free()
 		var bodyHealth : Health = body.get_node("Health")
