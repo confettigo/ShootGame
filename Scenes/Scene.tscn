@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dk4141bb8hbdm" path="res://Sprites/temp.png" id="6_yjbl5"]
 [ext_resource type="Script" path="res://Scripts/Camera/CameraScript.gd" id="7_71g0y"]
 [ext_resource type="Texture2D" uid="uid://cqgl4lmyncoor" path="res://Sprites/Player/TempPlayer.png" id="7_skp1w"]
-[ext_resource type="PackedScene" path="res://Prefabs/cover.tscn" id="9_x28nl"]
-[ext_resource type="PackedScene" path="res://Prefabs/health.tscn" id="10_v43kw"]
+[ext_resource type="PackedScene" uid="uid://7ht4jq1yda18" path="res://Prefabs/cover.tscn" id="9_x28nl"]
+[ext_resource type="PackedScene" uid="uid://cs033bg2tvaoe" path="res://Prefabs/health.tscn" id="10_v43kw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s2i3d"]
 size = Vector2(239, 7)

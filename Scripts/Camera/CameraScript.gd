@@ -19,7 +19,6 @@ class_name CameraScript
 
 var playerPos : Vector2
 
-
 func _process(delta):
 	if highestVerticalPos > player.global_position.y:
 		highestVerticalPos = player.global_position.y
@@ -30,6 +29,7 @@ func _process(delta):
 	global_position = actual_cam_pos.round()
 
 func resetCamera():
-	# global_position = Vector2(121, player.global_position.y)
-	# highestVerticalPos = player.global_position.y
-	pass
+	global_position = Vector2(121, player.position.y)
+	playerPos = global_position
+	highestVerticalPos = player.position.y
+	actual_cam_pos = global_position

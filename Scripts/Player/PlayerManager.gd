@@ -12,7 +12,6 @@ func _ready():
 	playerHealth.onDeath.connect(onPlayerDeath)	
 
 func onPlayerDeath():
-	# player.position = checkpoint.position
-	# playerHealth.reset()
-	# CameraController.resetCamera()
-	pass
+	player.position = checkpoint.position
+	playerHealth.reset()
+	CameraController.resetCamera()
