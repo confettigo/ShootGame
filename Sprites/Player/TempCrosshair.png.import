@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxu5g8ulhuot3"
-path="res://.godot/imported/enemycat.jpg-a7db2d8ac67abf1d6c56edabf81dfd16.ctex"
+uid="uid://cqnsuipmagclr"
+path="res://.godot/imported/TempCrosshair.png-170b25f9c4de7e3a6146a912bbd1ef63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/enemycat.jpg"
-dest_files=["res://.godot/imported/enemycat.jpg-a7db2d8ac67abf1d6c56edabf81dfd16.ctex"]
+source_file="res://Sprites/Player/TempCrosshair.png"
+dest_files=["res://.godot/imported/TempCrosshair.png-170b25f9c4de7e3a6146a912bbd1ef63.ctex"]
 
 [params]
 

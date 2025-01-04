@@ -9,3 +9,5 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	move_and_collide(velocity * delta)
+	position.x = round(position.x)
+	position.y = round(position.y)
