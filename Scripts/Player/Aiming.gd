@@ -4,8 +4,11 @@ extends Node
 @export var parent : CharacterBody2D
 @export var projectileTemplate : PackedScene
 @export var projectileContainer : Node2D
+@export var baseCooldown : float
 
 var isShooting : bool
+var timer = baseCooldown 
+var canShoot : bool
 var aimDir = Vector2(0,-1)
 
 func getInput():
@@ -15,7 +18,7 @@ func getInput():
 	aimDir = inputDir
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	getInput()
 	sprite.position = aimDir * 50
 
@@ -25,7 +28,14 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_released("shoot"):
 		isShooting = false
 
-	if isShooting:
+	if !canShoot:
+		timer -= delta
+		if timer <=0:
+			canShoot = true
+
+	if isShooting && canShoot:
+		canShoot = false
+		timer = baseCooldown
 		var projectile : Projectile = projectileTemplate.instantiate()
 		projectileContainer.add_child(projectile)
 		projectile.position = parent.position
