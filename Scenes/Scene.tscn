@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bohqk6p8melto"]
+[gd_scene load_steps=11 format=3 uid="uid://bvptplpytivq6"]
 
+[ext_resource type="PackedScene" uid="uid://c7a0y3mb6g6yh" path="res://Prefabs/enemy.tscn" id="1_hn02x"]
 [ext_resource type="Script" path="res://Scripts/Player/Movement.gd" id="1_o1rxt"]
 [ext_resource type="Texture2D" uid="uid://c1pomfppeet6v" path="res://Sprites/goofy.jpg" id="2_bxjra"]
 [ext_resource type="Texture2D" uid="uid://diotkw6mvpsql" path="res://Sprites/glorp.png" id="3_28ao6"]
@@ -8,9 +9,35 @@
 [ext_resource type="Texture2D" uid="uid://dk4141bb8hbdm" path="res://Sprites/temp.png" id="6_yjbl5"]
 [ext_resource type="Script" path="res://Scripts/Camera/CameraScript.gd" id="7_71g0y"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2i3d"]
+size = Vector2(239, 7)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7oqx"]
 
 [node name="Scene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(125, 137)
+offset = Vector2(0, -50)
+script = ExtResource("7_71g0y")
+player = NodePath("../Player")
+
+[node name="Bounds" type="StaticBody2D" parent="Camera2D"]
+position = Vector2(5, 35)
+
+[node name="Bottom" type="CollisionShape2D" parent="Camera2D/Bounds"]
+position = Vector2(-10, 14)
+shape = SubResource("RectangleShape2D_s2i3d")
+
+[node name="Right" type="CollisionShape2D" parent="Camera2D/Bounds"]
+position = Vector2(118, -103)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_s2i3d")
+
+[node name="Left" type="CollisionShape2D" parent="Camera2D/Bounds"]
+position = Vector2(-130, -101)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_s2i3d")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(125, 137)
@@ -31,10 +58,7 @@ sprite = NodePath(".")
 parent = NodePath("..")
 projectileTemplate = ExtResource("5_dqnv8")
 projectileContainer = NodePath("../../ProjectileContainer")
-
-[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("player")]
-script = ExtResource("7_71g0y")
-player = NodePath("..")
+baseCooldown = 0.1
 
 [node name="ProjectileContainer" type="Node2D" parent="."]
 
@@ -42,3 +66,50 @@ player = NodePath("..")
 z_index = -1
 position = Vector2(121, 91)
 texture = ExtResource("6_yjbl5")
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(44, 44)
+
+[node name="Enemy2" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(107, 40)
+
+[node name="Enemy3" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(193, 48)
+
+[node name="Enemy4" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(198, -38)
+
+[node name="Enemy5" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(92, -92)
+
+[node name="Enemy6" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(69, -150)
+
+[node name="Enemy7" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(132, -154)
+
+[node name="Enemy8" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(218, -146)
+
+[node name="Enemy9" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(223, -232)
+
+[node name="Enemy10" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(117, -286)
+
+[node name="Enemy11" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(32, -355)
+
+[node name="Enemy12" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(95, -359)
+
+[node name="Enemy13" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(181, -351)
+
+[node name="Enemy14" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(186, -437)
+
+[node name="Enemy15" parent="Level" instance=ExtResource("1_hn02x")]
+position = Vector2(80, -491)
