@@ -20,6 +20,7 @@ config/icon="res://Sprites/icon.svg"
 CameraController="*res://Scripts/Camera/CameraController.gd"
 EnemyManager="*res://Scripts/Enemies/EnemyManager.gd"
 PlayerManager="*res://Scripts/Player/PlayerManager.gd"
+WorldManager="*res://Scripts/WorldManager.gd"
 
 [display]
 

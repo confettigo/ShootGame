@@ -3,10 +3,9 @@ extends Node
 @export var sprite : Sprite2D
 @export var parent : CharacterBody2D
 @export var projectileTemplate : PackedScene
-@export var projectileContainer : Node2D
-# @export var baseCooldown : float
 @export var currentWeapon : Weapon
 
+@onready var projectileContainer : Node2D = WorldManager.projectileContainer
 @onready var timer = currentWeapon.shootingCooldown 
 var isShooting : bool
 var canShoot : bool
