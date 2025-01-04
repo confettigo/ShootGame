@@ -22,6 +22,7 @@ func getInput():
 func _process(delta: float) -> void:
 	getInput()
 	sprite.position = aimDir * 50
+	sprite.position = round(sprite.position)
 
 	if Input.is_action_just_pressed("shoot"):
 		isShooting = true
