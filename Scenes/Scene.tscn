@@ -1,33 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvptplpytivq6"]
+[gd_scene load_steps=9 format=3 uid="uid://bohqk6p8melto"]
 
-[ext_resource type="PackedScene" uid="uid://c7a0y3mb6g6yh" path="res://Prefabs/enemy.tscn" id="1_hn02x"]
 [ext_resource type="Script" path="res://Scripts/Player/Movement.gd" id="1_o1rxt"]
 [ext_resource type="Texture2D" uid="uid://c1pomfppeet6v" path="res://Sprites/goofy.jpg" id="2_bxjra"]
 [ext_resource type="Texture2D" uid="uid://diotkw6mvpsql" path="res://Sprites/glorp.png" id="3_28ao6"]
 [ext_resource type="Script" path="res://Scripts/Player/Aiming.gd" id="4_uc2nf"]
 [ext_resource type="PackedScene" uid="uid://cxssj53riqjbx" path="res://Prefabs/projectile.tscn" id="5_dqnv8"]
+[ext_resource type="Texture2D" uid="uid://dk4141bb8hbdm" path="res://Sprites/temp.png" id="6_yjbl5"]
+[ext_resource type="Script" path="res://Scripts/Camera/CameraScript.gd" id="7_71g0y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7oqx"]
 
 [node name="Scene" type="Node2D"]
 
-[node name="Enemy" parent="." instance=ExtResource("1_hn02x")]
-position = Vector2(61, 44)
-
-[node name="Enemy2" parent="." instance=ExtResource("1_hn02x")]
-position = Vector2(145, 57)
-
-[node name="Enemy3" parent="." instance=ExtResource("1_hn02x")]
-position = Vector2(208, 37)
-
-[node name="Enemy4" parent="." instance=ExtResource("1_hn02x")]
-position = Vector2(233, 98)
-
-[node name="Enemy5" parent="." instance=ExtResource("1_hn02x")]
-position = Vector2(158, 187)
-
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(85, 127)
+position = Vector2(125, 137)
 script = ExtResource("1_o1rxt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -45,6 +31,14 @@ sprite = NodePath(".")
 parent = NodePath("..")
 projectileTemplate = ExtResource("5_dqnv8")
 projectileContainer = NodePath("../../ProjectileContainer")
-baseCooldown = 0.1
+
+[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("player")]
+script = ExtResource("7_71g0y")
+player = NodePath("..")
 
 [node name="ProjectileContainer" type="Node2D" parent="."]
+
+[node name="TempBackground" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(121, 91)
+texture = ExtResource("6_yjbl5")
