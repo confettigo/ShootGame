@@ -8,8 +8,10 @@
 shader = ExtResource("2_xv1jv")
 shader_parameter/camOffset = Vector2(0, 0)
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("subViewportContainer", "subViewport")]
 script = ExtResource("1_6eo6o")
+subViewportContainer = NodePath("SubViewportContainer")
+subViewport = NodePath("SubViewportContainer/SubViewport")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_211xf")

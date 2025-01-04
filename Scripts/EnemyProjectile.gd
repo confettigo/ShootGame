@@ -1,6 +1,6 @@
 extends Area2D
 
-class_name Projectile
+class_name EnemyProjectile
 
 @export var speed = 150
 @export var damage : int
@@ -15,7 +15,7 @@ func _physics_process(delta):
 func _on_projectile_body_entered(body:Node2D) -> void:
 	if body.is_in_group("bounds"):
 		queue_free()
-	if body.is_in_group("damageable"):
+	if body.is_in_group("player"):
 		queue_free()
 		var bodyHealth : Health = body.get_node("Health")
 		bodyHealth.hit(damage)
