@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvptplpytivq6"]
+[gd_scene load_steps=14 format=3 uid="uid://bvptplpytivq6"]
 
 [ext_resource type="PackedScene" uid="uid://c7a0y3mb6g6yh" path="res://Prefabs/enemy.tscn" id="1_hn02x"]
 [ext_resource type="Script" path="res://Scripts/Player/Movement.gd" id="1_o1rxt"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://diotkw6mvpsql" path="res://Sprites/glorp.png" id="3_28ao6"]
 [ext_resource type="Script" path="res://Scripts/Player/Aiming.gd" id="4_uc2nf"]
 [ext_resource type="PackedScene" uid="uid://cxssj53riqjbx" path="res://Prefabs/projectile.tscn" id="5_dqnv8"]
+[ext_resource type="Script" path="res://Scenes/Player.gd" id="5_lusat"]
 [ext_resource type="Texture2D" uid="uid://dk4141bb8hbdm" path="res://Sprites/temp.png" id="6_yjbl5"]
 [ext_resource type="Script" path="res://Scripts/Camera/CameraScript.gd" id="7_71g0y"]
 [ext_resource type="PackedScene" uid="uid://7ht4jq1yda18" path="res://Prefabs/cover.tscn" id="9_x28nl"]
@@ -23,6 +24,7 @@ position = Vector2(125, 137)
 offset = Vector2(0, -40)
 script = ExtResource("7_71g0y")
 player = NodePath("../Player")
+smoothness = 10.0
 
 [node name="Bounds" type="StaticBody2D" parent="Camera2D" groups=["bounds"]]
 position = Vector2(5, 35)
@@ -45,7 +47,7 @@ position = Vector2(-130, -101)
 rotation = -1.57079
 shape = SubResource("RectangleShape2D_s2i3d")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(125, 137)
 script = ExtResource("1_o1rxt")
 
@@ -54,9 +56,10 @@ shape = SubResource("CapsuleShape2D_l7oqx")
 
 [node name="Health" parent="Player" instance=ExtResource("10_v43kw")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
 scale = Vector2(0.015097, 0.0266552)
 texture = ExtResource("2_bxjra")
+script = ExtResource("5_lusat")
 
 [node name="DebugAim" type="Sprite2D" parent="Player" node_paths=PackedStringArray("sprite", "parent", "projectileContainer")]
 modulate = Color(1, 0.545098, 1, 0.454902)
@@ -127,3 +130,6 @@ position = Vector2(80, -491)
 position = Vector2(201, -118)
 
 [node name="ProjectileContainer" type="Node2D" parent="."]
+
+[node name="Checkpoint" type="Node2D" parent="."]
+position = Vector2(120, 166)

@@ -9,7 +9,7 @@ signal onHit
 signal onDeath
 
 func _ready() -> void:
-	currentHealth = maxHealth;
+	reset()
 
 func hit(damage : int):
 	currentHealth -= damage
@@ -19,4 +19,6 @@ func hit(damage : int):
 	else:
 		onDeath.emit()
 
+func reset():
+	currentHealth = maxHealth;
 	
