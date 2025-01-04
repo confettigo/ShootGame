@@ -1,5 +1,7 @@
 extends Node
 
+class_name Aiming
+
 @export var sprite : Sprite2D
 @export var parent : CharacterBody2D
 @export var projectileTemplate : PackedScene
@@ -16,7 +18,6 @@ func getInput():
 	if(inputDir == Vector2(0,0)):
 		return
 	aimDir = inputDir
-
 
 func _process(delta: float) -> void:
 	getInput()

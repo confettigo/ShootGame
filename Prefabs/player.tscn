@@ -1,13 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbtor83wly8rw"]
+[gd_scene load_steps=17 format=3 uid="uid://cbtor83wly8rw"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Movement.gd" id="1_ogpoo"]
-[ext_resource type="PackedScene" path="res://Prefabs/health.tscn" id="2_cfqko"]
+[ext_resource type="PackedScene" uid="uid://cs033bg2tvaoe" path="res://Prefabs/health.tscn" id="2_cfqko"]
 [ext_resource type="Texture2D" uid="uid://cqnsuipmagclr" path="res://Sprites/Player/TempCrosshair.png" id="3_js1mq"]
 [ext_resource type="Script" path="res://Scripts/Player/Aiming.gd" id="4_pvbg2"]
 [ext_resource type="PackedScene" uid="uid://cxssj53riqjbx" path="res://Prefabs/projectile.tscn" id="5_1iabx"]
 [ext_resource type="Resource" uid="uid://b1brbgqacvpdp" path="res://Data/Pistol.tres" id="6_tiv8r"]
 [ext_resource type="Texture2D" uid="uid://blwai8tbljk7p" path="res://Sprites/Player/PlayerSheet.png" id="7_xekc4"]
-[ext_resource type="Script" path="res://Scripts/PlayerPickupArea.gd" id="8_3h0fo"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAnimationHandler.gd" id="8_t4tb0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7oqx"]
@@ -79,9 +78,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_obb2b"]
-radius = 10.0499
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(125, 137)
 script = ExtResource("1_ogpoo")
@@ -106,12 +102,3 @@ animation = &"standingUp"
 autoplay = "standingUp"
 script = ExtResource("8_t4tb0")
 movement = NodePath("..")
-
-[node name="PickupArea" type="Area2D" parent="."]
-script = ExtResource("8_3h0fo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
-shape = SubResource("CircleShape2D_obb2b")
-
-[connection signal="area_entered" from="PickupArea" to="PickupArea" method="_on_area_entered"]
-[connection signal="body_entered" from="PickupArea" to="PickupArea" method="_on_body_entered"]
