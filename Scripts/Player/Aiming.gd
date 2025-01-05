@@ -22,6 +22,9 @@ func getInput():
 	aimDir = inputDir
 
 func _process(delta: float) -> void:
+	if !PlayerManager.canPlay:
+		return
+
 	getInput()
 	sprite.position = aimDir * 50
 	sprite.position = round(sprite.position)

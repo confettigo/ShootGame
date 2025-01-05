@@ -12,6 +12,9 @@ func _ready() -> void:
 	reset()
 
 func hit(damage : int):
+	if currentHealth <= 0:
+		return
+		
 	currentHealth -= damage
 	
 	if currentHealth > 0:

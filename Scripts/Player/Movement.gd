@@ -21,6 +21,9 @@ func get_input():
 
 
 func _physics_process(delta):
+	if !PlayerManager.canPlay:
+		return
+
 	get_input()
 	move_and_collide(velocity * delta)
 	position.x = round(position.x)

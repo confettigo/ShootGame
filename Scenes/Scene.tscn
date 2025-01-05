@@ -42,3 +42,5 @@ shape = SubResource("RectangleShape2D_s2i3d")
 [node name="Level 1" parent="." instance=ExtResource("3_lingm")]
 
 [node name="ProjectileContainer" type="Node2D" parent="."]
+
+[node name="ParticleSystemContainer" type="Node2D" parent="."]
