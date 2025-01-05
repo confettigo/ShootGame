@@ -37,8 +37,6 @@ func _process(delta):
 			self.modulate.a = 1.0
 			isDamaged = false
 
-	
-
 	# shoot
 	shootingTimer -= delta
 

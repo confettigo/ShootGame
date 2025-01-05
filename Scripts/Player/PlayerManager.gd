@@ -18,6 +18,7 @@ func onPlayerDeath():
 	player.visible = false
 	Scheduler.schedule(resetPlayer, 1)
 	setPlaying(false)
+	player.position = Vector2.INF
 
 func resetPlayer():
 	setPlaying(true)
