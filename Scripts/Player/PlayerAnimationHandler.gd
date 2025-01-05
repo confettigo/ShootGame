@@ -1,11 +1,7 @@
 extends AnimatedSprite2D
 @export var movement : Movement 
 
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if movement.idle == true:
 		match movement.direction:
 			movement.Movements.UP:

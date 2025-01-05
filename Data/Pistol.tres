@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://b1brbgqacvpdp"]
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://b1brbgqacvpdp"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_g5ajy"]
+[ext_resource type="Texture2D" uid="uid://c1pomfppeet6v" path="res://Sprites/goofy.jpg" id="1_hi2v8"]
 
 [resource]
 script = ExtResource("1_g5ajy")
+pickupSprite = ExtResource("1_hi2v8")
 damage = 1
 shootingCooldown = 0.3
+shootingType = 0

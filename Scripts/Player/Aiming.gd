@@ -13,6 +13,8 @@ var isShooting : bool
 var canShoot : bool
 var aimDir = Vector2(0,-1)
 
+
+
 func getInput():
 	var inputDir = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	if(inputDir == Vector2(0,0)):
@@ -36,12 +38,31 @@ func _process(delta: float) -> void:
 			canShoot = true
 
 	if isShooting && canShoot:
-		canShoot = false
-		timer = currentWeapon.shootingCooldown
+		shoot()
+
+func shoot():
+	canShoot = false
+	timer = currentWeapon.shootingCooldown
+	match currentWeapon.shootingType:
+		Weapon.type.SINGLE:
+			shootSingle()
+		Weapon.type.SPRAY:
+			shootSpray()
+		
+
+func shootSingle():
+	var projectile : Projectile = projectileTemplate.instantiate()
+	projectileContainer.add_child(projectile)
+	projectile.position = parent.position
+	projectile.setup(aimDir.normalized())
+
+func shootSpray():
+	for i in 5:
 		var projectile : Projectile = projectileTemplate.instantiate()
 		projectileContainer.add_child(projectile)
 		projectile.position = parent.position
-		projectile.setup(aimDir.normalized())
+		projectile.setup(aimDir.rotated(deg_to_rad(randf_range(-30, 30))), 1, randf_range(50, 100))
+	
 
 func changeWeapon(newWeapon : Weapon):
 	currentWeapon = newWeapon

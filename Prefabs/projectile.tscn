@@ -7,7 +7,6 @@
 
 [node name="Projectile" type="Area2D"]
 script = ExtResource("1_64tap")
-speed = 500
 damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

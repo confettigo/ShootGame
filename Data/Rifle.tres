@@ -8,3 +8,4 @@ script = ExtResource("1_21mlq")
 pickupSprite = ExtResource("1_r7cg5")
 damage = 1
 shootingCooldown = 0.1
+shootingType = 0

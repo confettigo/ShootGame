@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://71bjvujqyg16"]
+[gd_scene load_steps=14 format=4 uid="uid://71bjvujqyg16"]
 
 [ext_resource type="PackedScene" uid="uid://7ht4jq1yda18" path="res://Prefabs/cover.tscn" id="1_hb627"]
 [ext_resource type="PackedScene" uid="uid://c7a0y3mb6g6yh" path="res://Prefabs/enemy.tscn" id="2_qcvst"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://c5c18kslkmmw2" path="res://Data/Rifle.tres" id="5_ntqh6"]
 [ext_resource type="Texture2D" uid="uid://c1pomfppeet6v" path="res://Sprites/goofy.jpg" id="6_28x37"]
 [ext_resource type="Script" path="res://Scripts/Hover.gd" id="7_rona2"]
+[ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Flamethrower.tres" id="8_ny34e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mkhfm"]
 texture = ExtResource("3_r3iqo")
@@ -133,7 +134,7 @@ tile_map_data = PackedByteArray("AAAFAAUAAAAFAAEAAAAJAP3/AAAFAAEAAAAKAP3/AAAFAAE
 tile_set = SubResource("TileSet_ascl5")
 
 [node name="Pickup" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
-position = Vector2(189, 104)
+position = Vector2(216, 140)
 script = ExtResource("4_sxtbr")
 weapon = ExtResource("5_ntqh6")
 sprite = NodePath("Sprite")
@@ -153,8 +154,31 @@ position = Vector2(0, 5)
 scale = Vector2(0.00718907, 0.000859845)
 texture = ExtResource("6_28x37")
 
+[node name="Pickup2" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
+position = Vector2(216, 98)
+script = ExtResource("4_sxtbr")
+weapon = ExtResource("8_ny34e")
+sprite = NodePath("Sprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup2"]
+shape = SubResource("RectangleShape2D_th6lv")
+
+[node name="Sprite" type="Sprite2D" parent="Pickup2"]
+position = Vector2(-5.72205e-06, -4)
+scale = Vector2(0.0165349, 0.0197764)
+texture = ExtResource("6_28x37")
+script = ExtResource("7_rona2")
+
+[node name="Shadow" type="Sprite2D" parent="Pickup2"]
+modulate = Color(0, 0, 0, 0.372549)
+position = Vector2(0, 5)
+scale = Vector2(0.00718907, 0.000859845)
+texture = ExtResource("6_28x37")
+
 [node name="Checkpoint" type="Node2D" parent="."]
 position = Vector2(120, 166)
 
 [connection signal="area_entered" from="Pickup" to="Pickup" method="_on_area_entered"]
 [connection signal="body_entered" from="Pickup" to="Pickup" method="_on_body_entered"]
+[connection signal="area_entered" from="Pickup2" to="Pickup2" method="_on_area_entered"]
+[connection signal="body_entered" from="Pickup2" to="Pickup2" method="_on_body_entered"]
