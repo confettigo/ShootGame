@@ -25,6 +25,7 @@ func resetPlayer():
 	player.visible = true
 	player.position = checkpoint.position
 	playerHealth.reset()
+	playerAiming.reset()
 	CameraController.resetCamera()
 
 func setPlaying(_canPlay : bool):

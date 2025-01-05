@@ -22,3 +22,4 @@ func _process(delta: float) -> void:
 		else:
 			self.modulate.a = 1.0
 			isDamaged = false
+

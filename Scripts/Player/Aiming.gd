@@ -66,8 +66,10 @@ func shootSpray():
 		projectile.position = parent.position
 		projectile.setup(aimDir.rotated(deg_to_rad(randf_range(-30, 30))), 1, randf_range(50, 100))
 	
-
 func changeWeapon(newWeapon : Weapon):
 	currentWeapon = newWeapon
 	timer = 0
 	canShoot = true
+
+func reset():
+	isShooting = false

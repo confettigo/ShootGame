@@ -22,8 +22,6 @@ func _process(delta):
 
 	if !chaseEnabled && self.position.distance_to(playerTarget.position) <= attackRange:
 		chaseEnabled = true
-		
-
 
 func _on_trigger_body_entered(body:Node2D) -> void:
 	if body.is_in_group("player"):
