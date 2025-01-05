@@ -1,11 +1,13 @@
 extends Node
 
 @export var health : Health
+
 @export var baseDamageTime : float = 1
 @export var baseShootingCooldown : float = 2
 @export var shootingRange : float = 5
 @export var projectileTemplate : PackedScene
 @onready var projectileContainer : Node2D = WorldManager.projectileContainer
+
 @onready var playerTarget : CharacterBody2D = PlayerManager.player
 
 var damagedTimer : float = 0

@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd5ujr7ucprm1"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/ExplosiveDog.gd" id="1_5apys"]
+[ext_resource type="PackedScene" uid="uid://c0kellov431q3" path="res://Prefabs/Particles/explosion.tscn" id="2_a0tky"]
+[ext_resource type="PackedScene" uid="uid://cs033bg2tvaoe" path="res://Prefabs/health.tscn" id="3_01oej"]
+[ext_resource type="Texture2D" uid="uid://dtjq4tt1s8o7i" path="res://Sprites/Enemies/hatDog.webp" id="3_m01as"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgald"]
+size = Vector2(18, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eybdo"]
+size = Vector2(22, 24)
+
+[node name="ExplosiveDog" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["damageable"]]
+position = Vector2(404, 298)
+script = ExtResource("1_5apys")
+health = NodePath("Health")
+speed = 120.0
+attackRange = 150.0
+explosionParticles = ExtResource("2_a0tky")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bgald")
+
+[node name="Health" parent="." instance=ExtResource("3_01oej")]
+position = Vector2(-404, -298)
+maxHealth = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.21593e-05, 5.48363e-06)
+scale = Vector2(0.181, 0.2)
+texture = ExtResource("3_m01as")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_eybdo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_trigger_body_entered"]

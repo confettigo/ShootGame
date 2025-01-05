@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://71bjvujqyg16"]
+[gd_scene load_steps=15 format=4 uid="uid://71bjvujqyg16"]
 
 [ext_resource type="PackedScene" uid="uid://7ht4jq1yda18" path="res://Prefabs/cover.tscn" id="1_hb627"]
 [ext_resource type="PackedScene" uid="uid://c7a0y3mb6g6yh" path="res://Prefabs/enemy.tscn" id="2_qcvst"]
+[ext_resource type="PackedScene" uid="uid://dd5ujr7ucprm1" path="res://Prefabs/explosiveDog.tscn" id="3_8m0mx"]
 [ext_resource type="Texture2D" uid="uid://c0c8ygin7slf3" path="res://Sprites/Tiles/Tileset.png" id="3_r3iqo"]
 [ext_resource type="Script" path="res://Scripts/Pickup.gd" id="4_sxtbr"]
 [ext_resource type="Resource" uid="uid://c5c18kslkmmw2" path="res://Data/Rifle.tres" id="5_ntqh6"]
@@ -120,6 +121,12 @@ position = Vector2(186, -532)
 
 [node name="Enemy15" parent="Enemies" instance=ExtResource("2_qcvst")]
 position = Vector2(80, -586)
+
+[node name="ExplosiveDog" parent="Enemies" instance=ExtResource("3_8m0mx")]
+position = Vector2(-23, 18)
+
+[node name="ExplosiveDog2" parent="Enemies" instance=ExtResource("3_8m0mx")]
+position = Vector2(265, -28)
 
 [node name="Ground" type="TileMapLayer" parent="."]
 z_index = -1
