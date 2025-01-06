@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdqmaqurhrhwn"]
+
+[ext_resource type="Script" path="res://Scripts/Pickup.gd" id="1_a604f"]
+[ext_resource type="Resource" uid="uid://c5c18kslkmmw2" path="res://Data/Rifle.tres" id="2_jmeo8"]
+[ext_resource type="Texture2D" uid="uid://c1pomfppeet6v" path="res://Sprites/goofy.jpg" id="3_eas5p"]
+[ext_resource type="Script" path="res://Scripts/Hover.gd" id="4_tg4ye"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_th6lv"]
+size = Vector2(23.5, 22)
+
+[node name="Pickup" type="Area2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_a604f")
+weapon = ExtResource("2_jmeo8")
+sprite = NodePath("Sprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_th6lv")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.0165349, 0.0197764)
+texture = ExtResource("3_eas5p")
+script = ExtResource("4_tg4ye")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.372549)
+position = Vector2(0, 5)
+scale = Vector2(0.00718907, 0.000859845)
+texture = ExtResource("3_eas5p")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -24,7 +24,7 @@ position = Vector2(-10, 20)
 shape = SubResource("RectangleShape2D_s2i3d")
 
 [node name="Top" type="CollisionShape2D" parent="Camera2D/Bounds"]
-position = Vector2(-10, -216)
+position = Vector2(-10, -176)
 shape = SubResource("RectangleShape2D_s2i3d")
 
 [node name="Right" type="CollisionShape2D" parent="Camera2D/Bounds"]

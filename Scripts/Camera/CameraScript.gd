@@ -17,9 +17,17 @@ class_name CameraScript
 
 @export var smoothness : float = 5 
 
+var isLocked : bool = false 
+
 var playerPos : Vector2
 
+func _ready():
+	resetCamera()
+
 func _process(delta):
+	if isLocked:
+		return
+
 	if highestVerticalPos > player.global_position.y:
 		highestVerticalPos = player.global_position.y
 	playerPos = Vector2(121, highestVerticalPos)

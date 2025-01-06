@@ -6,6 +6,9 @@ var camera : CameraScript
 
 func _ready():
 	camera = get_tree().get_root().find_child("Camera2D", true, false)
-	
+
+func toggleCameraLock():
+	camera.isLocked = !camera.isLocked
+
 func resetCamera():
 	camera.resetCamera()

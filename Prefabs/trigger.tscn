@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm6cxx1erwdn7"]
+
+[ext_resource type="Script" path="res://Scripts/CameraLockTrigger.gd" id="1_n0jou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_th6lv"]
+size = Vector2(240, 23)
+
+[node name="Trigger" type="Area2D"]
+position = Vector2(120, -695)
+script = ExtResource("1_n0jou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_th6lv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

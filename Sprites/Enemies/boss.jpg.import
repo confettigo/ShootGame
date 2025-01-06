@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tvmdr1q17sll"
-path="res://.godot/imported/catcover.jpg-5c075823c018f4c601aebbf25c579dce.ctex"
+uid="uid://c7onggf4sweb"
+path="res://.godot/imported/boss.jpg-824cd313060a39bd9b45aced04349ff5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Prefabs/catcover.jpg"
-dest_files=["res://.godot/imported/catcover.jpg-5c075823c018f4c601aebbf25c579dce.ctex"]
+source_file="res://Sprites/Enemies/boss.jpg"
+dest_files=["res://.godot/imported/boss.jpg-824cd313060a39bd9b45aced04349ff5.ctex"]
 
 [params]
 

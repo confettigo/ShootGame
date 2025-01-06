@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7onggf4sweb"
-path="res://.godot/imported/enemybullet.jpg-ce991bf8de7b1b7ad6b88ce771b33178.ctex"
+uid="uid://tvmdr1q17sll"
+path="res://.godot/imported/catcover.jpg-d3a8cfedfa9d6dad5e13ceb97e90a06e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemies/enemybullet.jpg"
-dest_files=["res://.godot/imported/enemybullet.jpg-ce991bf8de7b1b7ad6b88ce771b33178.ctex"]
+source_file="res://Sprites/catcover.jpg"
+dest_files=["res://.godot/imported/catcover.jpg-d3a8cfedfa9d6dad5e13ceb97e90a06e.ctex"]
 
 [params]
 
