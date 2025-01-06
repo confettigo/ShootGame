@@ -1,18 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://clhg8hflmw124"]
+[gd_scene load_steps=6 format=3 uid="uid://clhg8hflmw124"]
 
 [ext_resource type="Script" path="res://Scripts/DebugManager.gd" id="1_ybudo"]
+[ext_resource type="Script" path="res://Scripts/Weapon.gd" id="2_byeie"]
+[ext_resource type="Resource" uid="uid://b1brbgqacvpdp" path="res://Data/Pistol.tres" id="3_jpmws"]
+[ext_resource type="Resource" uid="uid://c5c18kslkmmw2" path="res://Data/Rifle.tres" id="4_oyf5v"]
+[ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Flamethrower.tres" id="5_hpd8b"]
 
-[node name="DebugInterface" type="CanvasLayer" node_paths=PackedStringArray("shootingModeDropdown", "godMode")]
+[node name="DebugInterface" type="CanvasLayer" node_paths=PackedStringArray("shootingModeDropdown", "godMode", "weaponSelectDropdown")]
 process_mode = 3
 script = ExtResource("1_ybudo")
-shootingModeDropdown = NodePath("DebugPanel/AimingControlMode/OptionButton")
-godMode = NodePath("DebugPanel/GodMode/CheckBox")
+shootingModeDropdown = NodePath("DebugPanel/VBoxContainer/AimingControlMode/AimingControlDropdown")
+godMode = NodePath("DebugPanel/VBoxContainer/GodMode/GodModeCheckbox")
+weaponSelectDropdown = NodePath("DebugPanel/VBoxContainer/WeaponSelect/WeaponSelectDropdown")
+weapons = Array[ExtResource("2_byeie")]([ExtResource("3_jpmws"), ExtResource("4_oyf5v"), ExtResource("5_hpd8b")])
 
 [node name="DebugPanel" type="Panel" parent="."]
 offset_right = 1440.0
 offset_bottom = 1080.0
 
-[node name="Label" type="Label" parent="DebugPanel"]
+[node name="DebugLabel" type="Label" parent="DebugPanel"]
 layout_mode = 0
 offset_right = 1440.0
 offset_bottom = 99.0
@@ -21,37 +27,58 @@ theme_override_font_sizes/font_size = 72
 text = "DEBUG"
 horizontal_alignment = 1
 
-[node name="AimingControlMode" type="HSplitContainer" parent="DebugPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugPanel"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 131.0
-offset_right = 1413.0
-offset_bottom = 193.0
+offset_left = 37.0
+offset_top = 100.0
+offset_right = 1393.0
+offset_bottom = 1038.0
+theme_override_constants/separation = 20
 
-[node name="Name" type="Label" parent="DebugPanel/AimingControlMode"]
+[node name="AimingControlMode" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
 layout_mode = 2
+
+[node name="Name" type="Label" parent="DebugPanel/VBoxContainer/AimingControlMode"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 32
 text = "Aiming Control Mode
 "
 
-[node name="OptionButton" type="OptionButton" parent="DebugPanel/AimingControlMode"]
+[node name="AimingControlDropdown" type="OptionButton" parent="DebugPanel/VBoxContainer/AimingControlMode"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 fit_to_longest_item = false
 
-[node name="GodMode" type="HBoxContainer" parent="DebugPanel"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 220.0
-offset_right = 1413.0
-offset_bottom = 282.0
-
-[node name="Name" type="Label" parent="DebugPanel/GodMode"]
+[node name="WeaponSelect" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 500
+
+[node name="Name" type="Label" parent="DebugPanel/VBoxContainer/WeaponSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Weapon
+"
+
+[node name="WeaponSelectDropdown" type="OptionButton" parent="DebugPanel/VBoxContainer/WeaponSelect"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 9.72
+theme_override_font_sizes/font_size = 48
+fit_to_longest_item = false
+
+[node name="GodMode" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="DebugPanel/VBoxContainer/GodMode"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 32
 text = "God Mode
 "
 
-[node name="CheckBox" type="CheckBox" parent="DebugPanel/GodMode"]
+[node name="GodModeCheckbox" type="CheckBox" parent="DebugPanel/VBoxContainer/GodMode"]
 custom_minimum_size = Vector2(30, 20)
 layout_mode = 2

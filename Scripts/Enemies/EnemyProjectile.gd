@@ -11,7 +11,6 @@ func setup(_direction : Vector2):
 
 func _physics_process(delta):
 	position += direction * speed * delta
-	position = position.round()
 
 func _on_projectile_body_entered(body:Node2D) -> void:
 	if body.is_in_group("bounds"):

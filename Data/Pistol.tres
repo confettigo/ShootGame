@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_g5ajy")
+name = "Pistol"
 pickupSprite = ExtResource("1_hi2v8")
 damage = 1
 shootingCooldown = 0.3
