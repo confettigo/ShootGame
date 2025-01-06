@@ -13,19 +13,30 @@ var isShooting : bool
 var canShoot : bool
 var aimDir = Vector2(0,-1)
 
+enum shootingControlMode {MOUSE, KEYBOARD, CONTROLLER}
+var shootingMode : shootingControlMode = shootingControlMode.KEYBOARD
 
-
-func getInput():
+func getKeyboardInput():
 	var inputDir = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	if(inputDir == Vector2(0,0)):
 		return
-	aimDir = inputDir
+
+	aimDir = inputDir.normalized()
+
+func getMouseInput():
+	var mousePos = CameraController.viewport.get_mouse_position()
+	aimDir = (mousePos - parent.global_position).normalized().round().normalized()
 
 func _process(delta: float) -> void:
 	if !PlayerManager.canPlay:
 		return
 
-	getInput()
+	match shootingMode:
+		shootingControlMode.MOUSE:
+			getMouseInput()
+		shootingControlMode.KEYBOARD:
+			getKeyboardInput()
+
 	sprite.position = aimDir * 50
 	sprite.position = round(sprite.position)
 
@@ -70,6 +81,9 @@ func changeWeapon(newWeapon : Weapon):
 	currentWeapon = newWeapon
 	timer = 0
 	canShoot = true
+
+func changePlayerAimingMode(mode : int):
+	shootingMode = mode as shootingControlMode
 
 func reset():
 	isShooting = false

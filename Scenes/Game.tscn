@@ -1,19 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0uj1wwty4fmi"]
+[gd_scene load_steps=6 format=3 uid="uid://c0uj1wwty4fmi"]
 
-[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_6eo6o"]
 [ext_resource type="PackedScene" uid="uid://bvptplpytivq6" path="res://Scenes/Scene.tscn" id="1_jrmfm"]
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_tgk22"]
 [ext_resource type="Shader" path="res://Shaders/Camera.gdshader" id="2_xv1jv"]
+[ext_resource type="PackedScene" uid="uid://clhg8hflmw124" path="res://Prefabs/debug_interface.tscn" id="4_jll8p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_211xf"]
 shader = ExtResource("2_xv1jv")
 shader_parameter/camOffset = Vector2(0, 0)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("subViewportContainer", "subViewport")]
-script = ExtResource("1_6eo6o")
-subViewportContainer = NodePath("SubViewportContainer")
-subViewport = NodePath("SubViewportContainer/SubViewport")
+[node name="Game" type="Node2D"]
+
+[node name="DebugInterface" parent="." instance=ExtResource("4_jll8p")]
+visible = false
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+process_mode = 3
 material = SubResource("ShaderMaterial_211xf")
 offset_left = -6.0
 offset_top = -6.0
@@ -23,8 +25,18 @@ scale = Vector2(6, 6)
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+process_mode = 3
 handle_input_locally = false
 size = Vector2i(242, 182)
 render_target_update_mode = 4
 
 [node name="Scene" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_jrmfm")]
+process_mode = 1
+
+[node name="GameManager" type="Node" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("subViewportContainer", "subViewport", "gameScene", "debugInterface")]
+process_mode = 3
+script = ExtResource("1_tgk22")
+subViewportContainer = NodePath("../..")
+subViewport = NodePath("..")
+gameScene = NodePath("../Scene")
+debugInterface = NodePath("../../../DebugInterface")

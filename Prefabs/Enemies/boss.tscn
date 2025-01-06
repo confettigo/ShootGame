@@ -1,29 +1,29 @@
 [gd_scene load_steps=6 format=3 uid="uid://bhmn5uqxcc1jp"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_8h3iy"]
-[ext_resource type="PackedScene" uid="uid://cbtnm7ps58w86" path="res://Prefabs/enemyprojectile.tscn" id="2_goaen"]
-[ext_resource type="PackedScene" uid="uid://cs033bg2tvaoe" path="res://Prefabs/health.tscn" id="3_3t3va"]
-[ext_resource type="Texture2D" uid="uid://c7onggf4sweb" path="res://Sprites/Enemies/boss.jpg" id="4_ep388"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_8vagy"]
+[ext_resource type="PackedScene" uid="uid://cbtnm7ps58w86" path="res://Prefabs/Projectiles/enemyprojectile.tscn" id="2_hlcuf"]
+[ext_resource type="PackedScene" uid="uid://cs033bg2tvaoe" path="res://Prefabs/health.tscn" id="3_kba6b"]
+[ext_resource type="Texture2D" uid="uid://c7onggf4sweb" path="res://Sprites/Enemies/boss.jpg" id="4_iwg2e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u6asj"]
 size = Vector2(141, 78)
 
 [node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["damageable"]]
 position = Vector2(404, 298)
-script = ExtResource("1_8h3iy")
+script = ExtResource("1_8vagy")
 health = NodePath("Health")
 shootingRange = 120.0
-projectileTemplate = ExtResource("2_goaen")
+projectileTemplate = ExtResource("2_hlcuf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_u6asj")
 
-[node name="Health" parent="." instance=ExtResource("3_3t3va")]
+[node name="Health" parent="." instance=ExtResource("3_kba6b")]
 position = Vector2(-404, -298)
 maxHealth = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3.8147e-06, -3.75509e-06)
 scale = Vector2(0.384196, 0.212534)
-texture = ExtResource("4_ep388")
+texture = ExtResource("4_iwg2e")

@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=4 uid="uid://71bjvujqyg16"]
 
 [ext_resource type="PackedScene" uid="uid://7ht4jq1yda18" path="res://Prefabs/cover.tscn" id="1_hb627"]
-[ext_resource type="PackedScene" uid="uid://c7a0y3mb6g6yh" path="res://Prefabs/enemy.tscn" id="2_qcvst"]
-[ext_resource type="PackedScene" path="res://Prefabs/explosiveDog.tscn" id="3_8m0mx"]
+[ext_resource type="PackedScene" uid="uid://c7a0y3mb6g6yh" path="res://Prefabs/Enemies/enemy.tscn" id="2_qcvst"]
+[ext_resource type="PackedScene" uid="uid://dd5ujr7ucprm1" path="res://Prefabs/Enemies/explosiveDog.tscn" id="3_8m0mx"]
 [ext_resource type="Texture2D" uid="uid://c0c8ygin7slf3" path="res://Sprites/Tiles/Tileset.png" id="3_r3iqo"]
 [ext_resource type="PackedScene" uid="uid://cdqmaqurhrhwn" path="res://Prefabs/pickup.tscn" id="7_47u2s"]
 [ext_resource type="PackedScene" uid="uid://dm6cxx1erwdn7" path="res://Prefabs/trigger.tscn" id="8_6p71o"]
 [ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Flamethrower.tres" id="8_ny34e"]
-[ext_resource type="PackedScene" uid="uid://bhmn5uqxcc1jp" path="res://Prefabs/boss.tscn" id="11_v33rh"]
+[ext_resource type="PackedScene" uid="uid://bhmn5uqxcc1jp" path="res://Prefabs/Enemies/boss.tscn" id="11_v33rh"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Boss.gd" id="12_1l1ey"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mkhfm"]

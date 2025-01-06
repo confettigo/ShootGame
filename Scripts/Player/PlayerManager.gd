@@ -33,7 +33,3 @@ func resetPlayer():
 
 func setPlaying(_canPlay : bool):
 	canPlay = _canPlay
-
-func _input(_event):
-	if Input.is_key_label_pressed(KEY_Z):
-		playerHealth.currentHealth = 9999
