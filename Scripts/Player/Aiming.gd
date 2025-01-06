@@ -13,7 +13,7 @@ var isShooting : bool
 var canShoot : bool
 var aimDir = Vector2(0,-1)
 
-enum SHOOTING_CONTROL_MODE {MOUSE, KEYBOARD, CONTROLLER}
+enum SHOOTING_CONTROL_MODE {MOUSE, MOUSE_NON_DIRECTIONAL, KEYBOARD, CONTROLLER}
 var shootingMode : SHOOTING_CONTROL_MODE = SHOOTING_CONTROL_MODE.KEYBOARD
 
 func getKeyboardInput():
@@ -23,9 +23,12 @@ func getKeyboardInput():
 
 	aimDir = inputDir.normalized()
 
-func getMouseInput():
+func getMouseInput(directional : bool):
 	var mousePos = CameraController.viewport.get_mouse_position()
-	aimDir = (mousePos - parent.global_position).normalized().round().normalized()
+	aimDir = (mousePos - parent.get_global_transform_with_canvas().origin).normalized()
+	if directional:
+		aimDir = aimDir.round().normalized()
+
 
 func _process(delta: float) -> void:
 	if !PlayerManager.canPlay:
@@ -33,7 +36,9 @@ func _process(delta: float) -> void:
 
 	match shootingMode:
 		SHOOTING_CONTROL_MODE.MOUSE:
-			getMouseInput()
+			getMouseInput(true)
+		SHOOTING_CONTROL_MODE.MOUSE_NON_DIRECTIONAL:
+			getMouseInput(false)
 		SHOOTING_CONTROL_MODE.KEYBOARD:
 			getKeyboardInput()
 
@@ -62,7 +67,6 @@ func shoot():
 			shootSingle()
 		Weapon.WEAPON_TYPE.SPRAY:
 			shootSpray()
-		
 
 func shootSingle():
 	var projectile : Projectile = projectileTemplate.instantiate()
