@@ -4,7 +4,7 @@ class_name Movement
 @export var baseSpeed = 50
 @export var runSpeed = 300
 var currentSpeed = baseSpeed
-enum Movements {UP, DOWN}
+enum Movements {UP, DOWN, LEFT, RIGHT}
 var direction : Movements = Movements.UP
 var idle = true
 
@@ -20,6 +20,7 @@ func get_input():
 		direction = Movements.UP
 	elif input_dir.y > 0:
 		direction = Movements.DOWN
+		
 
 	# debug speed mode
 	if Input.is_action_just_pressed("run"):
