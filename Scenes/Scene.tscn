@@ -37,9 +37,9 @@ position = Vector2(-130, -104)
 rotation = -1.57079
 shape = SubResource("RectangleShape2D_s2i3d")
 
-[node name="Player" parent="." instance=ExtResource("2_hfxvk")]
-
 [node name="Level 1" parent="." instance=ExtResource("3_lingm")]
+
+[node name="Player" parent="." instance=ExtResource("2_hfxvk")]
 
 [node name="ProjectileContainer" type="Node2D" parent="."]
 

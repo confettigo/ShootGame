@@ -12,6 +12,9 @@ class_name Aiming
 var isShooting : bool
 var canShoot : bool
 var aimDir = Vector2(0,-1)
+var ammo : Array[int]
+var currentWeaponIndex : int
+
 
 enum SHOOTING_CONTROL_MODE {MOUSE, MOUSE_NON_DIRECTIONAL, KEYBOARD, CONTROLLER}
 var shootingMode : SHOOTING_CONTROL_MODE = SHOOTING_CONTROL_MODE.KEYBOARD
@@ -71,14 +74,14 @@ func shoot():
 func shootSingle():
 	var projectile : Projectile = projectileTemplate.instantiate()
 	projectileContainer.add_child(projectile)
-	projectile.position = parent.position
+	projectile.position = parent.position + aimDir * 10
 	projectile.setup(aimDir.normalized())
 
 func shootSpray():
 	for i in 5:
 		var projectile : Projectile = projectileTemplate.instantiate()
 		projectileContainer.add_child(projectile)
-		projectile.position = parent.position
+		projectile.position = parent.position + aimDir * 10
 		projectile.setup(aimDir.rotated(deg_to_rad(randf_range(-30, 30))), 1, randf_range(50, 100))
 	
 func changeWeapon(newWeapon : Weapon):
