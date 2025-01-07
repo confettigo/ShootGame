@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://b1brbgqacvpdp"]
+
+[ext_resource type="Texture2D" uid="uid://c1pomfppeet6v" path="res://Sprites/goofy.jpg" id="1_vueib"]
+[ext_resource type="Script" path="res://Scripts/Weapon.gd" id="2_x7ehw"]
+
+[resource]
+resource_name = "Pistol"
+script = ExtResource("2_x7ehw")
+name = "Pistol"
+pickupSprite = ExtResource("1_vueib")
+damage = 1
+shootingCooldown = 0.3
+shootingType = 0

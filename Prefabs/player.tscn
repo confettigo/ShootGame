@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cqnsuipmagclr" path="res://Sprites/Player/TempCrosshair.png" id="3_js1mq"]
 [ext_resource type="Script" path="res://Scripts/Player/Aiming.gd" id="4_pvbg2"]
 [ext_resource type="PackedScene" uid="uid://cxssj53riqjbx" path="res://Prefabs/Projectiles/projectile.tscn" id="5_1iabx"]
-[ext_resource type="Resource" uid="uid://b1brbgqacvpdp" path="res://Data/Pistol.tres" id="6_tiv8r"]
+[ext_resource type="Resource" uid="uid://b1brbgqacvpdp" path="res://Data/Weapons/1_Pistol.tres" id="6_tiv8r"]
 [ext_resource type="Texture2D" uid="uid://bywq6p4prgemu" path="res://Sprites/Player/Player-Sheet.png" id="7_00lxc"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAnimationHandler.gd" id="8_t4tb0"]
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="9_04ure"]

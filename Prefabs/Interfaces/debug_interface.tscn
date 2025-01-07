@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/DebugManager.gd" id="1_ybudo"]
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="2_byeie"]
-[ext_resource type="Resource" uid="uid://b1brbgqacvpdp" path="res://Data/Pistol.tres" id="3_jpmws"]
-[ext_resource type="Resource" uid="uid://c5c18kslkmmw2" path="res://Data/Rifle.tres" id="4_oyf5v"]
-[ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Flamethrower.tres" id="5_hpd8b"]
+[ext_resource type="Resource" uid="uid://b1brbgqacvpdp" path="res://Data/Weapons/1_Pistol.tres" id="3_jpmws"]
+[ext_resource type="Resource" uid="uid://c5c18kslkmmw2" path="res://Data/Weapons/2_Rifle.tres" id="4_oyf5v"]
+[ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Weapons/3_Flamethrower.tres" id="5_hpd8b"]
 [ext_resource type="Texture2D" uid="uid://dtjq4tt1s8o7i" path="res://Sprites/Enemies/hatDog.webp" id="6_7rlty"]
 [ext_resource type="Texture2D" uid="uid://diotkw6mvpsql" path="res://Sprites/glorp.png" id="6_arlhl"]
 [ext_resource type="FontFile" uid="uid://xlgd7pwiihn0" path="res://Fonts/8bit16.ttf" id="6_u63mh"]

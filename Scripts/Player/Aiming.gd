@@ -5,16 +5,13 @@ class_name Aiming
 @export var sprite : Sprite2D
 @export var parent : CharacterBody2D
 @export var projectileTemplate : PackedScene
-@export var currentWeapon : Weapon
 
 @onready var projectileContainer : Node2D = WorldManager.projectileContainer
-@onready var timer = currentWeapon.shootingCooldown 
+@onready var timer = WeaponManager.currentWeapon.weaponData.shootingCooldown 
+
 var isShooting : bool
 var canShoot : bool
 var aimDir = Vector2(0,-1)
-var ammo : Array[int]
-var currentWeaponIndex : int
-
 
 enum SHOOTING_CONTROL_MODE {MOUSE, MOUSE_NON_DIRECTIONAL, KEYBOARD, CONTROLLER}
 var shootingMode : SHOOTING_CONTROL_MODE = SHOOTING_CONTROL_MODE.KEYBOARD
@@ -31,7 +28,6 @@ func getMouseInput(directional : bool):
 	aimDir = (mousePos - parent.get_global_transform_with_canvas().origin).normalized()
 	if directional:
 		aimDir = aimDir.round().normalized()
-
 
 func _process(delta: float) -> void:
 	if !PlayerManager.canPlay:
@@ -64,8 +60,8 @@ func _process(delta: float) -> void:
 
 func shoot():
 	canShoot = false
-	timer = currentWeapon.shootingCooldown
-	match currentWeapon.shootingType:
+	timer = WeaponManager.currentWeapon.weaponData.shootingCooldown
+	match WeaponManager.currentWeapon.weaponData.shootingType:
 		Weapon.WEAPON_TYPE.SINGLE:
 			shootSingle()
 		Weapon.WEAPON_TYPE.SPRAY:
@@ -83,14 +79,11 @@ func shootSpray():
 		projectileContainer.add_child(projectile)
 		projectile.position = parent.position + aimDir * 10
 		projectile.setup(aimDir.rotated(deg_to_rad(randf_range(-30, 30))), 1, randf_range(50, 100))
-	
-func changeWeapon(newWeapon : Weapon):
-	currentWeapon = newWeapon
-	timer = 0
-	canShoot = true
 
 func changePlayerAimingMode(mode : int):
 	shootingMode = mode as SHOOTING_CONTROL_MODE
 
 func reset():
+	timer = 0
+	canShoot = true
 	isShooting = false

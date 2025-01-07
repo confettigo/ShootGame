@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://dwxwgpxver3rv"]
+
+[ext_resource type="Texture2D" uid="uid://dx51vq08b2631" path="res://Sprites/icon.svg" id="1_mui4i"]
+[ext_resource type="Script" path="res://Scripts/Weapon.gd" id="2_gvo0c"]
+
+[resource]
+resource_name = "Flamethrower"
+script = ExtResource("2_gvo0c")
+name = "Flamethrower"
+pickupSprite = ExtResource("1_mui4i")
+damage = 1
+shootingCooldown = 0.1
+shootingType = 1

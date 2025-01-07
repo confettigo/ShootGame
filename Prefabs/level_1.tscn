@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c0c8ygin7slf3" path="res://Sprites/Tiles/Tileset.png" id="3_r3iqo"]
 [ext_resource type="PackedScene" uid="uid://cdqmaqurhrhwn" path="res://Prefabs/pickup.tscn" id="7_47u2s"]
 [ext_resource type="PackedScene" uid="uid://dm6cxx1erwdn7" path="res://Prefabs/trigger.tscn" id="8_6p71o"]
-[ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Flamethrower.tres" id="8_ny34e"]
+[ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Weapons/3_Flamethrower.tres" id="8_ny34e"]
 [ext_resource type="PackedScene" uid="uid://bhmn5uqxcc1jp" path="res://Prefabs/Enemies/boss.tscn" id="11_v33rh"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Boss.gd" id="12_1l1ey"]
 

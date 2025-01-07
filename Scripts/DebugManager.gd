@@ -3,7 +3,7 @@ extends Node
 @export var shootingModeDropdown : OptionButton
 @export var godMode : CheckBox
 @export var weaponSelectDropdown : OptionButton
-@export var weapons : Array[Weapon]
+@onready var weapons = WeaponManager.weaponList
 
 func _ready():
 	self.visibility_changed.connect(refresh)
@@ -14,14 +14,14 @@ func _ready():
 	shootingModeDropdown.item_selected.connect(PlayerManager.playerAiming.changePlayerAimingMode)
 
 	godMode.toggled.connect(PlayerManager.playerHealth.setInvulnerability)
-
+	
 	for weapon in weapons:
-		weaponSelectDropdown.add_item(weapon.name)
-	weaponSelectDropdown.select(weapons.find(PlayerManager.playerAiming.currentWeapon))
-	weaponSelectDropdown.item_selected.connect(changeWeaponDebug)
+		weaponSelectDropdown.add_item(weapon.resource_name)
+	weaponSelectDropdown.select(weapons.find(WeaponManager.currentWeapon.weaponData))
+	weaponSelectDropdown.item_selected.connect(WeaponManager.changeWeapon)
 
 func refresh():
-	weaponSelectDropdown.select(weapons.find(PlayerManager.playerAiming.currentWeapon))
+	weaponSelectDropdown.select(weapons.find(WeaponManager.currentWeapon.weaponData))
 
-func changeWeaponDebug(index : int):
-	PlayerManager.playerAiming.changeWeapon(weapons[index])
+# func changeWeaponDebug(index : int):
+# 	WeaponManager.changeWeapon(weapons[index])

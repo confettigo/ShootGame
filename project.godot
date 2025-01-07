@@ -15,7 +15,7 @@ run/main_scene="res://Scenes/Game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
 boot_splash/image="res://Sprites/glorp.png"
-config/icon="res://Sprites/icon.svg"
+config/icon="res://Sprites/Enemies/hatDog.webp"
 
 [autoload]
 
@@ -25,6 +25,7 @@ PlayerManager="*res://Scripts/Player/PlayerManager.gd"
 WorldManager="*res://Scripts/WorldManager.gd"
 ParticleSystemManager="*res://Scripts/ParticleSystemManager.gd"
 Scheduler="*res://Scripts/Scheduler.gd"
+WeaponManager="*res://Scripts/Player/WeaponManager.gd"
 
 [display]
 
