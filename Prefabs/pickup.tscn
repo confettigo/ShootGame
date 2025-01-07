@@ -8,10 +8,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_th6lv"]
 size = Vector2(23.5, 22)
 
-[node name="Pickup" type="Area2D" node_paths=PackedStringArray("sprite")]
+[node name="Pickup" type="Area2D" node_paths=PackedStringArray("sprite", "shadow")]
 script = ExtResource("1_a604f")
 weapon = ExtResource("2_jmeo8")
 sprite = NodePath("Sprite")
+shadow = NodePath("Sprite2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.25, 0)
@@ -21,8 +22,19 @@ shape = SubResource("RectangleShape2D_th6lv")
 scale = Vector2(0.0165349, 0.0197764)
 texture = ExtResource("3_eas5p")
 script = ExtResource("4_tg4ye")
+offsetHover = 5
+
+[node name="Sprite2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+scale = Vector2(0.0165349, 0.0197764)
+texture = ExtResource("3_eas5p")
+script = ExtResource("4_tg4ye")
+offsetHover = -15.0
+signE = -1.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0, 0, 0, 0.372549)
 position = Vector2(0, 5)
 scale = Vector2(0.00718907, 0.000859845)
