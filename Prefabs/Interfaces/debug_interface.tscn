@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://clhg8hflmw124"]
+[gd_scene load_steps=10 format=3 uid="uid://clhg8hflmw124"]
 
 [ext_resource type="Script" path="res://Scripts/DebugManager.gd" id="1_ybudo"]
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="2_byeie"]
 [ext_resource type="Resource" uid="uid://b1brbgqacvpdp" path="res://Data/Pistol.tres" id="3_jpmws"]
 [ext_resource type="Resource" uid="uid://c5c18kslkmmw2" path="res://Data/Rifle.tres" id="4_oyf5v"]
 [ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Flamethrower.tres" id="5_hpd8b"]
+[ext_resource type="Texture2D" uid="uid://dtjq4tt1s8o7i" path="res://Sprites/Enemies/hatDog.webp" id="6_7rlty"]
+[ext_resource type="Texture2D" uid="uid://diotkw6mvpsql" path="res://Sprites/glorp.png" id="6_arlhl"]
+[ext_resource type="FontFile" uid="uid://xlgd7pwiihn0" path="res://Fonts/8bit16.ttf" id="6_u63mh"]
+[ext_resource type="Theme" uid="uid://c0awtjs5amksd" path="res://Fonts/theme.tres" id="7_lcbv3"]
 
 [node name="DebugInterface" type="CanvasLayer" node_paths=PackedStringArray("shootingModeDropdown", "godMode", "weaponSelectDropdown")]
 process_mode = 3
@@ -17,15 +21,19 @@ weapons = Array[ExtResource("2_byeie")]([ExtResource("3_jpmws"), ExtResource("4_
 [node name="DebugPanel" type="Panel" parent="."]
 offset_right = 1440.0
 offset_bottom = 1080.0
+theme = ExtResource("7_lcbv3")
 
 [node name="DebugLabel" type="Label" parent="DebugPanel"]
+modulate = Color(0.416465, 0.78535, 0.45023, 1)
 layout_mode = 0
 offset_right = 1440.0
-offset_bottom = 99.0
+offset_bottom = 82.0
+theme = ExtResource("7_lcbv3")
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 72
 text = "DEBUG"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DebugPanel"]
 layout_mode = 0
@@ -33,6 +41,7 @@ offset_left = 37.0
 offset_top = 100.0
 offset_right = 1393.0
 offset_bottom = 1038.0
+theme = ExtResource("7_lcbv3")
 theme_override_constants/separation = 20
 
 [node name="AimingControlMode" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
@@ -41,6 +50,7 @@ layout_mode = 2
 [node name="Name" type="Label" parent="DebugPanel/VBoxContainer/AimingControlMode"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("6_u63mh")
 theme_override_font_sizes/font_size = 32
 text = "Aiming Control Mode
 "
@@ -48,6 +58,7 @@ text = "Aiming Control Mode
 [node name="AimingControlDropdown" type="OptionButton" parent="DebugPanel/VBoxContainer/AimingControlMode"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme = ExtResource("7_lcbv3")
 theme_override_font_sizes/font_size = 48
 fit_to_longest_item = false
 
@@ -58,6 +69,7 @@ theme_override_constants/separation = 500
 [node name="Name" type="Label" parent="DebugPanel/VBoxContainer/WeaponSelect"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("6_u63mh")
 theme_override_font_sizes/font_size = 32
 text = "Weapon
 "
@@ -66,6 +78,8 @@ text = "Weapon
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_stretch_ratio = 9.72
+theme = ExtResource("7_lcbv3")
+theme_override_fonts/font = ExtResource("6_u63mh")
 theme_override_font_sizes/font_size = 48
 fit_to_longest_item = false
 
@@ -75,6 +89,7 @@ layout_mode = 2
 [node name="Name" type="Label" parent="DebugPanel/VBoxContainer/GodMode"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("6_u63mh")
 theme_override_font_sizes/font_size = 32
 text = "God Mode
 "
@@ -82,3 +97,6 @@ text = "God Mode
 [node name="GodModeCheckbox" type="CheckBox" parent="DebugPanel/VBoxContainer/GodMode"]
 custom_minimum_size = Vector2(30, 20)
 layout_mode = 2
+theme = ExtResource("7_lcbv3")
+theme_override_icons/checked = ExtResource("6_arlhl")
+theme_override_icons/unchecked = ExtResource("6_7rlty")

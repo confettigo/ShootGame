@@ -16,7 +16,7 @@ func setup(_direction : Vector2, deleteOnTime : float = -1, _speed : float = 150
 		bullet_free_timer.set_one_shot(true)
 		add_child(bullet_free_timer)
 		bullet_free_timer.start()
-		bullet_free_timer.connect("timeout", remove_bullet)
+		bullet_free_timer.timeout.connect(remove_bullet)
 
 func _physics_process(delta):
 	position += direction * speed * delta
