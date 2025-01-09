@@ -8,6 +8,7 @@
 size = Vector2(52, 20)
 
 [node name="Cover" type="StaticBody2D" node_paths=PackedStringArray("health") groups=["damageable"]]
+texture_filter = 1
 position = Vector2(111, 70)
 script = ExtResource("1_420rv")
 health = NodePath("Health")

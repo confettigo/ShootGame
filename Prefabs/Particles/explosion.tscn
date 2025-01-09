@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0kellov431q3"]
 
 [node name="Explosion" type="CPUParticles2D"]
+texture_filter = 1
 emitting = false
 amount = 100
 lifetime = 30.0

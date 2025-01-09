@@ -11,4 +11,4 @@ pickupSprite = ExtResource("1_mui4i")
 damage = 1
 startingAmmo = 600
 shootingCooldown = 0.1
-shootingType = 1
+shootingType = 2

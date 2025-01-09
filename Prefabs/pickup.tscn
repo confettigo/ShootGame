@@ -9,6 +9,7 @@
 size = Vector2(23.5, 22)
 
 [node name="Pickup" type="Area2D" node_paths=PackedStringArray("sprite", "shadow")]
+texture_filter = 1
 script = ExtResource("1_a604f")
 weapon = ExtResource("2_jmeo8")
 sprite = NodePath("Sprite")

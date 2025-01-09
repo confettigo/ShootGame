@@ -9,6 +9,7 @@
 size = Vector2(141, 78)
 
 [node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["damageable"]]
+texture_filter = 1
 position = Vector2(404, 298)
 script = ExtResource("1_8vagy")
 health = NodePath("Health")

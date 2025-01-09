@@ -5,9 +5,10 @@ class_name Aiming
 @export var sprite : Sprite2D
 @export var parent : CharacterBody2D
 @export var projectileTemplate : PackedScene
+@export var damageAreaTemplate : PackedScene
 
 @onready var projectileContainer : Node2D = WorldManager.projectileContainer
-@onready var timer = WeaponManager.currentWeapon.weaponData.shootingCooldown 
+@onready var timer = WeaponManager.currentWeapon.weaponData.shootingCooldown
 
 var isShooting : bool
 var canShoot : bool
@@ -15,6 +16,7 @@ var aimDir = Vector2(0,-1)
 
 enum SHOOTING_CONTROL_MODE {MOUSE, MOUSE_NON_DIRECTIONAL, KEYBOARD, CONTROLLER}
 var shootingMode : SHOOTING_CONTROL_MODE = SHOOTING_CONTROL_MODE.KEYBOARD
+
 
 func getKeyboardInput():
 	var inputDir = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
@@ -66,6 +68,8 @@ func shoot():
 			shootSingle()
 		Weapon.WEAPON_TYPE.SPRAY:
 			shootSpray()
+		Weapon.WEAPON_TYPE.LINE_AREA:
+			shootAreaLine()
 	WeaponManager.onCurrentWeaponUsed.emit(WeaponManager.currentWeapon.ammo)
 
 func shootSingle():
@@ -83,6 +87,14 @@ func shootSpray():
 		projectileContainer.add_child(projectile)
 		projectile.position = parent.position + aimDir * 10
 		projectile.setup(aimDir.rotated(deg_to_rad(randf_range(-30, 30))), 1, randf_range(50, 100))
+
+func shootAreaLine():
+	for i in 5:
+		WeaponManager.currentWeapon.ammo -= 1
+		var damageArea : DamageArea = damageAreaTemplate.instantiate()
+		projectileContainer.add_child(damageArea)
+		damageArea.position = parent.position + aimDir * 20 * (i+1)
+		damageArea.setup(i * 0.1, 0.3)
 
 func changePlayerAimingMode(mode : int):
 	shootingMode = mode as SHOOTING_CONTROL_MODE

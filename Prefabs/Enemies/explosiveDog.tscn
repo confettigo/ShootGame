@@ -12,6 +12,7 @@ size = Vector2(18, 20)
 size = Vector2(22, 24)
 
 [node name="ExplosiveDog" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["damageable"]]
+texture_filter = 1
 position = Vector2(404, 298)
 script = ExtResource("1_5apys")
 health = NodePath("Health")
