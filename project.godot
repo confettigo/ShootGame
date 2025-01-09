@@ -38,6 +38,10 @@ window/size/viewport_height=1080
 window/size/mode=2
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+bounds=""
+
 [input]
 
 move_right={
