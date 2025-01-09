@@ -52,7 +52,7 @@ func _process(delta: float) -> void:
 
 	if !canShoot:
 		timer -= delta
-		if timer <= 0:
+		if timer <= 0 && WeaponManager.currentWeapon.ammo != 0:
 			canShoot = true
 
 	if isShooting && canShoot:
@@ -66,8 +66,11 @@ func shoot():
 			shootSingle()
 		Weapon.WEAPON_TYPE.SPRAY:
 			shootSpray()
+	WeaponManager.onCurrentWeaponUsed.emit(WeaponManager.currentWeapon.ammo)
 
 func shootSingle():
+	if WeaponManager.currentWeapon.ammo > 0:
+		WeaponManager.currentWeapon.ammo -= 1
 	var projectile : Projectile = projectileTemplate.instantiate()
 	projectileContainer.add_child(projectile)
 	projectile.position = parent.position + aimDir * 10
@@ -75,6 +78,7 @@ func shootSingle():
 
 func shootSpray():
 	for i in 5:
+		WeaponManager.currentWeapon.ammo -= 1
 		var projectile : Projectile = projectileTemplate.instantiate()
 		projectileContainer.add_child(projectile)
 		projectile.position = parent.position + aimDir * 10

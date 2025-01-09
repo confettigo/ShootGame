@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb0hvulavh1h8"]
+[gd_scene load_steps=5 format=3 uid="uid://bb0hvulavh1h8"]
 
 [ext_resource type="Theme" uid="uid://c0awtjs5amksd" path="res://Fonts/theme.tres" id="1_yr12q"]
 [ext_resource type="Texture2D" uid="uid://cce52vfrxxtjf" path="res://Sprites/Player/smallbullet.png" id="2_kgkof"]
+[ext_resource type="Script" path="res://Scripts/WeaponInterface.gd" id="2_p7uvs"]
 [ext_resource type="Texture2D" uid="uid://dtblbn6ko5mb3" path="res://Sprites/Player/bullet.png" id="3_qwflq"]
 
 [node name="GameInterface" type="CanvasLayer"]
 
-[node name="WeaponInfo" type="HBoxContainer" parent="."]
+[node name="WeaponInfo" type="HBoxContainer" parent="." node_paths=PackedStringArray("weaponSprite", "weaponShadowSprite", "ammoSprite", "ammoShadowSprite", "ammoLabel")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -16,13 +17,19 @@ offset_right = 408.0
 offset_bottom = -12.0
 grow_vertical = 0
 theme = ExtResource("1_yr12q")
+script = ExtResource("2_p7uvs")
+weaponSprite = NodePath("WeaponSprite")
+weaponShadowSprite = NodePath("WeaponSprite/Shadow")
+ammoSprite = NodePath("AmmoSprite")
+ammoShadowSprite = NodePath("AmmoSprite/Shadow")
+ammoLabel = NodePath("AmmoCount")
 
-[node name="TextureRect" type="TextureRect" parent="WeaponInfo"]
+[node name="WeaponSprite" type="TextureRect" parent="WeaponInfo"]
 layout_mode = 2
 texture = ExtResource("2_kgkof")
 expand_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="WeaponInfo/TextureRect"]
+[node name="Shadow" type="TextureRect" parent="WeaponInfo/WeaponSprite"]
 modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 layout_mode = 2
@@ -33,11 +40,11 @@ offset_bottom = 102.0
 texture = ExtResource("2_kgkof")
 expand_mode = 2
 
-[node name="Spacer3" type="Control" parent="WeaponInfo"]
+[node name="Spacer" type="Control" parent="WeaponInfo"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="WeaponInfo"]
+[node name="AmmoSprite" type="TextureRect" parent="WeaponInfo"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 8
@@ -45,7 +52,7 @@ texture = ExtResource("3_qwflq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TextureRect3" type="TextureRect" parent="WeaponInfo/TextureRect2"]
+[node name="Shadow" type="TextureRect" parent="WeaponInfo/AmmoSprite"]
 modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 layout_mode = 2
@@ -58,11 +65,12 @@ texture = ExtResource("3_qwflq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Spacer4" type="Control" parent="WeaponInfo"]
+[node name="Spacer2" type="Control" parent="WeaponInfo"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="WeaponInfo"]
+[node name="AmmoCount" type="Label" parent="WeaponInfo"]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)

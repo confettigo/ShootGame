@@ -10,14 +10,20 @@ class PlayableWeapon:
 		owned = _owned
 		ammo = _ammo
 
+	func print():
+		print(weaponData.resource_name + " - Owned: " + str(owned) + " - Ammo: " + str(ammo))
+
 var weaponList : Array[Weapon]
 @onready var aiming = PlayerManager.playerAiming
 var playerWeaponList : Array[PlayableWeapon]
 var currentWeapon : PlayableWeapon
 
+signal onCurrentWeaponChanged(currentWeapon : PlayableWeapon)
+signal onCurrentWeaponUsed(currentAmmo : int)
+
 func _ready():
 	loadWeapons()
-	currentWeapon = playerWeaponList[0]
+	changeWeaponIndex(0)
 	
 func loadWeapons():
 	var path = "res://Data/Weapons/"
@@ -29,13 +35,35 @@ func loadWeapons():
 	for fileName in filePaths:
 		weaponList.append(load(path + fileName))
 
-	# Load from save (currently hardcoded owned and ammo)
-	playerWeaponList.append(PlayableWeapon.new(weaponList[0], true, -1))
-	playerWeaponList.append(PlayableWeapon.new(weaponList[1], false, 0))
-	playerWeaponList.append(PlayableWeapon.new(weaponList[2], false, 0))
+	# Should load from save (if you owned the weapon)
+	for i in weaponList.size():
+		playerWeaponList.append(PlayableWeapon.new(weaponList[i], false, weaponList[i].startingAmmo))
 
-	
-func changeWeapon(index : int):
+
+func changeWeaponIndex(index : int):
 	currentWeapon = playerWeaponList[index]
-	print(currentWeapon.weaponData.resource_name)
+
+	if !currentWeapon.owned:
+		# New weapon!
+		currentWeapon.owned = true
+		print("New weapon!")
+	else:
+		# Already owned weapon
+		if currentWeapon.ammo == -1:
+			# Do not reload infinite weapons
+			pass
+		else:
+			# Should be a set value per weapon 
+			currentWeapon.ammo += 30
+	
+	currentWeapon.print()
 	aiming.reset()
+
+	onCurrentWeaponChanged.emit(currentWeapon)
+
+func changeWeapon(_weapon : Weapon):
+	var i : int = 0
+	for weapon in playerWeaponList:
+		if _weapon == weapon.weaponData:
+			changeWeaponIndex(i)
+		i = i + 1

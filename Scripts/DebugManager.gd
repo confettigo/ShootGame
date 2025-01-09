@@ -18,10 +18,7 @@ func _ready():
 	for weapon in weapons:
 		weaponSelectDropdown.add_item(weapon.resource_name)
 	weaponSelectDropdown.select(weapons.find(WeaponManager.currentWeapon.weaponData))
-	weaponSelectDropdown.item_selected.connect(WeaponManager.changeWeapon)
+	weaponSelectDropdown.item_selected.connect(WeaponManager.changeWeaponIndex)
 
 func refresh():
 	weaponSelectDropdown.select(weapons.find(WeaponManager.currentWeapon.weaponData))
-
-# func changeWeaponDebug(index : int):
-# 	WeaponManager.changeWeapon(weapons[index])

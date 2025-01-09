@@ -9,5 +9,6 @@ script = ExtResource("2_61vu4")
 name = "Rifle"
 pickupSprite = ExtResource("1_sv2x4")
 damage = 1
+startingAmmo = 120
 shootingCooldown = 0.1
 shootingType = 0

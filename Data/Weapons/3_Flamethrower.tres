@@ -9,5 +9,6 @@ script = ExtResource("2_gvo0c")
 name = "Flamethrower"
 pickupSprite = ExtResource("1_mui4i")
 damage = 1
+startingAmmo = 600
 shootingCooldown = 0.1
 shootingType = 1

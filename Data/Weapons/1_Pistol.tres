@@ -9,5 +9,6 @@ script = ExtResource("2_x7ehw")
 name = "Pistol"
 pickupSprite = ExtResource("1_vueib")
 damage = 1
+startingAmmo = -1
 shootingCooldown = 0.3
 shootingType = 0
