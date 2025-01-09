@@ -15,6 +15,7 @@ modulate = Color(0.870588, 0, 0, 0.701961)
 position = Vector2(-10, -10)
 scale = Vector2(20, 20)
 texture = ExtResource("3_gyg4m")
+centered = false
 
 [node name="Area2" type="Sprite2D" parent="."]
 visible = false
@@ -23,6 +24,7 @@ show_behind_parent = true
 position = Vector2(-10, -9.53674e-07)
 scale = Vector2(20, 20)
 texture = ExtResource("3_gyg4m")
+centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dnjus")
