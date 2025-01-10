@@ -2,7 +2,7 @@ extends Node
 
 @export var shootingModeDropdown : OptionButton
 
-@export var godMode : CheckBox
+@export var godMode : CheckButton
 
 @export var weaponSelectDropdown : OptionButton
 @onready var weapons = WeaponManager.weaponList

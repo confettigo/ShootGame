@@ -1,8 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://clhg8hflmw124"]
+[gd_scene load_steps=4 format=3 uid="uid://clhg8hflmw124"]
 
 [ext_resource type="Script" path="res://Scripts/DebugManager.gd" id="1_ybudo"]
-[ext_resource type="Texture2D" uid="uid://dtjq4tt1s8o7i" path="res://Sprites/Enemies/hatDog.webp" id="6_7rlty"]
-[ext_resource type="Texture2D" uid="uid://diotkw6mvpsql" path="res://Sprites/glorp.png" id="6_arlhl"]
 [ext_resource type="FontFile" uid="uid://xlgd7pwiihn0" path="res://Fonts/8bit16.ttf" id="6_u63mh"]
 [ext_resource type="Theme" uid="uid://c0awtjs5amksd" path="res://Fonts/theme.tres" id="7_lcbv3"]
 
@@ -10,7 +8,7 @@
 process_mode = 3
 script = ExtResource("1_ybudo")
 shootingModeDropdown = NodePath("DebugPanel/VBoxContainer/AimingControlMode/AimingControlDropdown")
-godMode = NodePath("DebugPanel/VBoxContainer/GodMode/GodModeCheckbox")
+godMode = NodePath("DebugPanel/VBoxContainer/GodMode/GodModeCheckbutton")
 weaponSelectDropdown = NodePath("DebugPanel/VBoxContainer/WeaponSelect/WeaponSelectDropdown")
 checkpointSelectDropdown = NodePath("DebugPanel/VBoxContainer/CheckpointSelect/CheckpointSelectDropdown")
 
@@ -41,6 +39,7 @@ theme = ExtResource("7_lcbv3")
 theme_override_constants/separation = 20
 
 [node name="AimingControlMode" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/separation = 400
 
@@ -60,6 +59,7 @@ theme_override_font_sizes/font_size = 48
 fit_to_longest_item = false
 
 [node name="WeaponSelect" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/separation = 400
 
@@ -81,6 +81,7 @@ theme_override_font_sizes/font_size = 48
 fit_to_longest_item = false
 
 [node name="CheckpointSelect" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/separation = 400
 
@@ -102,7 +103,9 @@ theme_override_font_sizes/font_size = 48
 fit_to_longest_item = false
 
 [node name="GodMode" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_constants/separation = 400
 
 [node name="Name" type="Label" parent="DebugPanel/VBoxContainer/GodMode"]
 layout_mode = 2
@@ -112,9 +115,7 @@ theme_override_font_sizes/font_size = 32
 text = "God Mode
 "
 
-[node name="GodModeCheckbox" type="CheckBox" parent="DebugPanel/VBoxContainer/GodMode"]
-custom_minimum_size = Vector2(30, 20)
+[node name="GodModeCheckbutton" type="CheckButton" parent="DebugPanel/VBoxContainer/GodMode"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("7_lcbv3")
-theme_override_icons/checked = ExtResource("6_arlhl")
-theme_override_icons/unchecked = ExtResource("6_7rlty")
