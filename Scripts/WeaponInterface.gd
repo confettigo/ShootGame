@@ -1,9 +1,7 @@
 extends Node
 
 @export var weaponSprite : TextureRect
-@export var weaponShadowSprite : TextureRect
 @export var ammoSprite : TextureRect
-@export var ammoShadowSprite : TextureRect
 @export var ammoLabel : Label
 
 func _init():
@@ -14,7 +12,7 @@ func updateWeaponInterface(currentWeapon : WeaponManager.PlayableWeapon):
 	weaponSprite.texture = currentWeapon.weaponData.pickupSprite
 	ammoSprite.texture = currentWeapon.weaponData.ammoSprite
 	if currentWeapon.ammo == -1:
-		ammoLabel.text = "∞"
+		ammoLabel.text = "~"
 	else:
 		ammoLabel.text = str(currentWeapon.ammo)
 

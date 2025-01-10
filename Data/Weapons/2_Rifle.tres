@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://c5c18kslkmmw2"]
 
+[ext_resource type="Texture2D" uid="uid://r7mbqiqx2t7d" path="res://Sprites/Weapons/Rifle_Ammo.png" id="1_3423h"]
 [ext_resource type="Texture2D" uid="uid://co26b5xcg2oyi" path="res://Sprites/Weapons/Rifle.png" id="1_ayx61"]
-[ext_resource type="Texture2D" uid="uid://r7mbqiqx2t7d" path="res://Sprites/Weapons/Rifle_Ammo.png" id="1_bcuhu"]
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="2_61vu4"]
 
 [resource]
@@ -9,7 +9,7 @@ resource_name = "Rifle"
 script = ExtResource("2_61vu4")
 name = "Rifle"
 pickupSprite = ExtResource("1_ayx61")
-ammoSprite = ExtResource("1_bcuhu")
+ammoSprite = ExtResource("1_3423h")
 damage = 1
 startingAmmo = 120
 shootingCooldown = 0.1

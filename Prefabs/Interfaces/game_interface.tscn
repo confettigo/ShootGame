@@ -7,7 +7,7 @@
 
 [node name="GameInterface" type="CanvasLayer"]
 
-[node name="WeaponInfo" type="HBoxContainer" parent="." node_paths=PackedStringArray("weaponSprite", "weaponShadowSprite", "ammoSprite", "ammoShadowSprite", "ammoLabel")]
+[node name="WeaponInfo" type="HBoxContainer" parent="." node_paths=PackedStringArray("weaponSprite", "ammoSprite", "ammoLabel")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -19,9 +19,7 @@ grow_vertical = 0
 theme = ExtResource("1_yr12q")
 script = ExtResource("2_p7uvs")
 weaponSprite = NodePath("WeaponSprite")
-weaponShadowSprite = NodePath("")
 ammoSprite = NodePath("AmmoSprite")
-ammoShadowSprite = NodePath("")
 ammoLabel = NodePath("AmmoCount")
 
 [node name="WeaponSprite" type="TextureRect" parent="WeaponInfo"]
@@ -39,7 +37,7 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("3_qwflq")
-expand_mode = 3
+expand_mode = 5
 stretch_mode = 4
 
 [node name="Spacer2" type="Control" parent="WeaponInfo"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=36 format=3 uid="uid://cbtor83wly8rw"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Movement.gd" id="1_ogpoo"]
-[ext_resource type="PackedScene" path="res://Prefabs/health.tscn" id="2_cfqko"]
+[ext_resource type="PackedScene" uid="uid://cs033bg2tvaoe" path="res://Prefabs/health.tscn" id="2_cfqko"]
 [ext_resource type="Texture2D" uid="uid://cqnsuipmagclr" path="res://Sprites/Player/TempCrosshair.png" id="3_js1mq"]
 [ext_resource type="Script" path="res://Scripts/Player/Aiming.gd" id="4_pvbg2"]
 [ext_resource type="PackedScene" uid="uid://cxssj53riqjbx" path="res://Prefabs/Projectiles/projectile.tscn" id="5_1iabx"]
-[ext_resource type="PackedScene" uid="uid://bawx8ljew0qg6" path="res://Prefabs/Projectiles/damageArea.tscn" id="6_lg8q2"]
+[ext_resource type="PackedScene" uid="uid://ckkolwelhyeoc" path="res://Prefabs/Projectiles/damageArea.tscn" id="6_lg8q2"]
 [ext_resource type="Texture2D" uid="uid://bywq6p4prgemu" path="res://Sprites/Player/Player-Sheet.png" id="7_00lxc"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAnimationHandler.gd" id="8_t4tb0"]
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="9_04ure"]
