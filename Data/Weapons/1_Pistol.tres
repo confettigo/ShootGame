@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://b1brbgqacvpdp"]
+[gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://b1brbgqacvpdp"]
 
-[ext_resource type="Texture2D" uid="uid://c1pomfppeet6v" path="res://Sprites/goofy.jpg" id="1_vueib"]
+[ext_resource type="Texture2D" uid="uid://qypts7i76f7m" path="res://Sprites/Weapons/Pistol_Ammo.png" id="1_bijc5"]
+[ext_resource type="Texture2D" uid="uid://bdlpfqcrqkwdo" path="res://Sprites/Weapons/Pistol.png" id="1_o2gih"]
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="2_x7ehw"]
 
 [resource]
 resource_name = "Pistol"
 script = ExtResource("2_x7ehw")
 name = "Pistol"
-pickupSprite = ExtResource("1_vueib")
+pickupSprite = ExtResource("1_o2gih")
+ammoSprite = ExtResource("1_bijc5")
 damage = 1
 startingAmmo = -1
 shootingCooldown = 0.3

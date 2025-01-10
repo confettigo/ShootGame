@@ -12,9 +12,7 @@ func _init():
 
 func updateWeaponInterface(currentWeapon : WeaponManager.PlayableWeapon):
 	weaponSprite.texture = currentWeapon.weaponData.pickupSprite
-	weaponShadowSprite.texture = weaponSprite.texture
-	ammoSprite.texture = currentWeapon.weaponData.pickupSprite
-	ammoShadowSprite.texture = ammoSprite.texture
+	ammoSprite.texture = currentWeapon.weaponData.ammoSprite
 	if currentWeapon.ammo == -1:
 		ammoLabel.text = "∞"
 	else:
