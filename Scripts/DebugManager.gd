@@ -1,9 +1,13 @@
 extends Node
 
 @export var shootingModeDropdown : OptionButton
+
 @export var godMode : CheckBox
+
 @export var weaponSelectDropdown : OptionButton
 @onready var weapons = WeaponManager.weaponList
+
+@export var checkpointSelectDropdown : OptionButton
 
 func _ready():
 	self.visibility_changed.connect(refresh)
@@ -20,5 +24,11 @@ func _ready():
 	weaponSelectDropdown.select(weapons.find(WeaponManager.currentWeapon.weaponData))
 	weaponSelectDropdown.item_selected.connect(WeaponManager.changeWeaponIndex)
 
+	for checkpoint in WorldManager.levelCheckpoints:
+		checkpointSelectDropdown.add_item(checkpoint.name)
+	checkpointSelectDropdown.select(WorldManager.currentCheckpointIndex)
+	checkpointSelectDropdown.item_selected.connect(WorldManager.setCheckpointIndex)
+
 func refresh():
 	weaponSelectDropdown.select(weapons.find(WeaponManager.currentWeapon.weaponData))
+	checkpointSelectDropdown.select(WorldManager.currentCheckpointIndex)

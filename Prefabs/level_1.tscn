@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://dd5ujr7ucprm1" path="res://Prefabs/Enemies/explosiveDog.tscn" id="3_8m0mx"]
 [ext_resource type="TileSet" uid="uid://djcxo0rd7pf3p" path="res://Prefabs/Tilesets/level_1.tres" id="6_2o8gs"]
 [ext_resource type="PackedScene" uid="uid://cdqmaqurhrhwn" path="res://Prefabs/pickup.tscn" id="7_47u2s"]
-[ext_resource type="PackedScene" uid="uid://dm6cxx1erwdn7" path="res://Prefabs/trigger.tscn" id="8_6p71o"]
+[ext_resource type="PackedScene" uid="uid://dm6cxx1erwdn7" path="res://Prefabs/cameraLockTrigger.tscn" id="8_6p71o"]
 [ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Weapons/3_Flamethrower.tres" id="8_ny34e"]
+[ext_resource type="PackedScene" uid="uid://bqkmutbi3qqd5" path="res://Prefabs/checkpoint.tscn" id="10_nd1rf"]
 [ext_resource type="PackedScene" uid="uid://bhmn5uqxcc1jp" path="res://Prefabs/Enemies/boss.tscn" id="11_v33rh"]
-[ext_resource type="Script" path="res://Scripts/Enemies/Boss.gd" id="12_1l1ey"]
 
 [node name="Level 1" type="Node2D"]
 texture_filter = 1
@@ -73,10 +73,8 @@ position = Vector2(-23, 18)
 position = Vector2(265, -28)
 
 [node name="Boss" parent="." instance=ExtResource("11_v33rh")]
-position = Vector2(121, -769)
-script = ExtResource("12_1l1ey")
-speed = 1.0
-baseShootingCooldown = 0.01
+position = Vector2(125, -1070)
+speed = 30.0
 
 [node name="Ground" type="TileMapLayer" parent="."]
 z_index = -1
@@ -108,7 +106,18 @@ position = Vector2(216, 66)
 position = Vector2(215, 104)
 weapon = ExtResource("8_ny34e")
 
-[node name="Trigger" parent="." instance=ExtResource("8_6p71o")]
+[node name="CameraLockTrigger" parent="." instance=ExtResource("8_6p71o")]
+position = Vector2(120, -884)
 
-[node name="Checkpoint" type="Node2D" parent="."]
+[node name="CheckpointContainer" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="CheckpointContainer" instance=ExtResource("10_nd1rf")]
 position = Vector2(120, 131)
+
+[node name="Checkpoint2" parent="CheckpointContainer" instance=ExtResource("10_nd1rf")]
+position = Vector2(120, -280)
+checkpointIndex = 1
+
+[node name="Checkpoint3" parent="CheckpointContainer" instance=ExtResource("10_nd1rf")]
+position = Vector2(120, -744)
+checkpointIndex = 2

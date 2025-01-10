@@ -25,7 +25,7 @@ func onPlayerDeath():
 func resetPlayer():
 	setPlaying(true)
 	player.visible = true
-	player.position = checkpoint.position
+	player.position = WorldManager.getCurrentCheckpointPosition()
 	playerMoving.reset()
 	playerHealth.reset()
 	playerAiming.reset()

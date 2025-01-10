@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bhmn5uqxcc1jp"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_8vagy"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Boss.gd" id="1_87y7s"]
 [ext_resource type="PackedScene" uid="uid://cbtnm7ps58w86" path="res://Prefabs/Projectiles/enemyprojectile.tscn" id="2_hlcuf"]
 [ext_resource type="PackedScene" uid="uid://cs033bg2tvaoe" path="res://Prefabs/health.tscn" id="3_kba6b"]
 [ext_resource type="Texture2D" uid="uid://c7onggf4sweb" path="res://Sprites/Enemies/boss.jpg" id="4_iwg2e"]
@@ -11,8 +11,10 @@ size = Vector2(141, 78)
 [node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["damageable"]]
 texture_filter = 1
 position = Vector2(404, 298)
-script = ExtResource("1_8vagy")
+script = ExtResource("1_87y7s")
 health = NodePath("Health")
+speed = 60.0
+baseShootingCooldown = 0.01
 shootingRange = 120.0
 projectileTemplate = ExtResource("2_hlcuf")
 

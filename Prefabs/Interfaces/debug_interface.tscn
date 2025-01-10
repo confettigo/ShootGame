@@ -1,22 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://clhg8hflmw124"]
+[gd_scene load_steps=6 format=3 uid="uid://clhg8hflmw124"]
 
 [ext_resource type="Script" path="res://Scripts/DebugManager.gd" id="1_ybudo"]
-[ext_resource type="Script" path="res://Scripts/Weapon.gd" id="2_byeie"]
-[ext_resource type="Resource" uid="uid://b1brbgqacvpdp" path="res://Data/Weapons/1_Pistol.tres" id="3_jpmws"]
-[ext_resource type="Resource" uid="uid://c5c18kslkmmw2" path="res://Data/Weapons/2_Rifle.tres" id="4_oyf5v"]
-[ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Weapons/3_Flamethrower.tres" id="5_hpd8b"]
 [ext_resource type="Texture2D" uid="uid://dtjq4tt1s8o7i" path="res://Sprites/Enemies/hatDog.webp" id="6_7rlty"]
 [ext_resource type="Texture2D" uid="uid://diotkw6mvpsql" path="res://Sprites/glorp.png" id="6_arlhl"]
 [ext_resource type="FontFile" uid="uid://xlgd7pwiihn0" path="res://Fonts/8bit16.ttf" id="6_u63mh"]
 [ext_resource type="Theme" uid="uid://c0awtjs5amksd" path="res://Fonts/theme.tres" id="7_lcbv3"]
 
-[node name="DebugInterface" type="CanvasLayer" node_paths=PackedStringArray("shootingModeDropdown", "godMode", "weaponSelectDropdown")]
+[node name="DebugInterface" type="CanvasLayer" node_paths=PackedStringArray("shootingModeDropdown", "godMode", "weaponSelectDropdown", "checkpointSelectDropdown")]
 process_mode = 3
 script = ExtResource("1_ybudo")
 shootingModeDropdown = NodePath("DebugPanel/VBoxContainer/AimingControlMode/AimingControlDropdown")
 godMode = NodePath("DebugPanel/VBoxContainer/GodMode/GodModeCheckbox")
 weaponSelectDropdown = NodePath("DebugPanel/VBoxContainer/WeaponSelect/WeaponSelectDropdown")
-weapons = Array[ExtResource("2_byeie")]([ExtResource("3_jpmws"), ExtResource("4_oyf5v"), ExtResource("5_hpd8b")])
+checkpointSelectDropdown = NodePath("DebugPanel/VBoxContainer/CheckpointSelect/CheckpointSelectDropdown")
 
 [node name="DebugPanel" type="Panel" parent="."]
 offset_right = 1440.0
@@ -46,6 +42,7 @@ theme_override_constants/separation = 20
 
 [node name="AimingControlMode" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 400
 
 [node name="Name" type="Label" parent="DebugPanel/VBoxContainer/AimingControlMode"]
 layout_mode = 2
@@ -64,7 +61,7 @@ fit_to_longest_item = false
 
 [node name="WeaponSelect" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 500
+theme_override_constants/separation = 400
 
 [node name="Name" type="Label" parent="DebugPanel/VBoxContainer/WeaponSelect"]
 layout_mode = 2
@@ -75,6 +72,27 @@ text = "Weapon
 "
 
 [node name="WeaponSelectDropdown" type="OptionButton" parent="DebugPanel/VBoxContainer/WeaponSelect"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 9.72
+theme = ExtResource("7_lcbv3")
+theme_override_fonts/font = ExtResource("6_u63mh")
+theme_override_font_sizes/font_size = 48
+fit_to_longest_item = false
+
+[node name="CheckpointSelect" type="HBoxContainer" parent="DebugPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 400
+
+[node name="Name" type="Label" parent="DebugPanel/VBoxContainer/CheckpointSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("6_u63mh")
+theme_override_font_sizes/font_size = 32
+text = "CheckPoint select
+"
+
+[node name="CheckpointSelectDropdown" type="OptionButton" parent="DebugPanel/VBoxContainer/CheckpointSelect"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_stretch_ratio = 9.72

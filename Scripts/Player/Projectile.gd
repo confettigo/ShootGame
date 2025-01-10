@@ -20,8 +20,6 @@ func setup(_direction : Vector2, deleteOnTime : float = -1, _speed : float = 150
 
 func _physics_process(delta):
 	position += direction * speed * delta
-	# Removed rounding due to flamethrower!
-	# position = position.round()
 
 func _on_projectile_body_entered(body:Node2D) -> void:
 	if body.is_in_group("bounds"):

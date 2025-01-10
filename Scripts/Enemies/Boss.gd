@@ -17,7 +17,7 @@ var isDamaged = true
 var shootingTimer
 
 func _ready():
-	targetPosition = self.position + Vector2.DOWN * 25
+	targetPosition = self.position + Vector2.DOWN * 100
 	health.onHit.connect(onHit)
 	health.onDeath.connect(onDeath)
 	shootingTimer = 2
@@ -40,8 +40,8 @@ func _process(delta):
 			isDamaged = false
 
 	self.position = self.position.move_toward(targetPosition, delta * speed)
-	self.position.x = ceil(self.position.x)
-	self.position.y = ceil(self.position.y)
+	# self.position.x = ceil(self.position.x)
+	# self.position.y = ceil(self.position.y)
 	shootingTimer -= delta
 
 	# range check
