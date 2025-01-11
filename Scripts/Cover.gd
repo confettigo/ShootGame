@@ -1,12 +1,17 @@
+@tool
 extends Node
+
 class_name Cover
+
 @export var health : Health
 @export var coverSprite : Sprite2D
 var index = 0
 signal breakage(index)
 
 func _ready():
-	health.onDeath.connect(onDeath)
+	if !Engine.is_editor_hint():
+		print(name)
+		health.onDeath.connect(onDeath)
 
 func onDeath():
 	breakage.emit(index)

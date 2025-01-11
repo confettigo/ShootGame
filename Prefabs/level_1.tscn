@@ -116,10 +116,14 @@ checkpointIndex = 1
 position = Vector2(120, -744)
 checkpointIndex = 2
 
-[node name="CoverGroup" parent="." instance=ExtResource("10_otmc3")]
+[node name="CoverGroup2" parent="." instance=ExtResource("10_otmc3")]
 position = Vector2(81, -23)
 length = 4
 
-[node name="CoverGroup2" parent="." instance=ExtResource("10_otmc3")]
+[node name="CoverGroup4" parent="." instance=ExtResource("10_otmc3")]
 position = Vector2(161, -207)
 length = 6
+
+[node name="CoverGroup3" parent="." instance=ExtResource("10_otmc3")]
+position = Vector2(81, 33)
+length = 1
