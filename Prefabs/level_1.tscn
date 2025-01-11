@@ -14,7 +14,7 @@
 texture_filter = 1
 
 [node name="Cover" parent="." instance=ExtResource("1_hb627")]
-position = Vector2(111, -25)
+position = Vector2(114, -24)
 
 [node name="Cover2" parent="." instance=ExtResource("1_hb627")]
 position = Vector2(201, -213)

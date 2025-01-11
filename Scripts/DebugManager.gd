@@ -22,7 +22,7 @@ func _ready():
 	for weapon in weapons:
 		weaponSelectDropdown.add_item(weapon.resource_name)
 	weaponSelectDropdown.select(weapons.find(WeaponManager.currentWeapon.weaponData))
-	weaponSelectDropdown.item_selected.connect(WeaponManager.changeWeaponIndex)
+	weaponSelectDropdown.item_selected.connect(WeaponManager.getWeaponIndex)
 
 	for checkpoint in WorldManager.levelCheckpoints:
 		checkpointSelectDropdown.add_item(checkpoint.name)

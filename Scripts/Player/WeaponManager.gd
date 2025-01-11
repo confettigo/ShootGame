@@ -17,13 +17,17 @@ var weaponList : Array[Weapon]
 @onready var aiming = PlayerManager.playerAiming
 var playerWeaponList : Array[PlayableWeapon]
 var currentWeapon : PlayableWeapon
+var currentWeaponIndex : int
+var previousWeaponIndex : int
 
 signal onCurrentWeaponChanged(currentWeapon : PlayableWeapon)
 signal onCurrentWeaponUsed(currentAmmo : int)
+signal onNewWeaponOwned(newWeaponIndex : int)
 
 func _ready():
 	loadWeapons()
-	changeWeaponIndex(0)
+	getWeaponIndex(0)
+	previousWeaponIndex = 0
 	
 func loadWeapons():
 	var path = "res://Data/Weapons/"
@@ -39,14 +43,15 @@ func loadWeapons():
 	for i in weaponList.size():
 		playerWeaponList.append(PlayableWeapon.new(weaponList[i], false, weaponList[i].startingAmmo))
 
-
-func changeWeaponIndex(index : int):
+func getWeaponIndex(index : int):
+	previousWeaponIndex = currentWeaponIndex
 	currentWeapon = playerWeaponList[index]
-
+	currentWeaponIndex = index
 	if !currentWeapon.owned:
 		# New weapon!
 		currentWeapon.owned = true
 		print("New weapon!")
+		onNewWeaponOwned.emit(index)
 	else:
 		# Already owned weapon
 		if currentWeapon.ammo == -1:
@@ -61,9 +66,22 @@ func changeWeaponIndex(index : int):
 
 	onCurrentWeaponChanged.emit(currentWeapon)
 
-func changeWeapon(_weapon : Weapon):
+func changeWeaponIndex(index : int):
+	previousWeaponIndex = currentWeaponIndex
+	currentWeapon = playerWeaponList[index]
+	currentWeaponIndex = index
+	
+	currentWeapon.print()
+	aiming.reset()
+
+	onCurrentWeaponChanged.emit(currentWeapon)
+
+func getWeapon(_weapon : Weapon):
 	var i : int = 0
 	for weapon in playerWeaponList:
 		if _weapon == weapon.weaponData:
-			changeWeaponIndex(i)
+			getWeaponIndex(i)
 		i = i + 1
+
+func isWeaponOwned(index : int) -> bool:
+	return index < playerWeaponList.size() && playerWeaponList[index].owned
