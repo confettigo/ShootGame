@@ -10,7 +10,6 @@ signal breakage(index)
 
 func _ready():
 	if !Engine.is_editor_hint():
-		print(name)
 		health.onDeath.connect(onDeath)
 
 func onDeath():

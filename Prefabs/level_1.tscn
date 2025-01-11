@@ -61,10 +61,10 @@ position = Vector2(186, -532)
 position = Vector2(80, -586)
 
 [node name="ExplosiveDog" parent="Enemies" instance=ExtResource("3_8m0mx")]
-position = Vector2(-29, -74)
+position = Vector2(-49, -598)
 
 [node name="ExplosiveDog2" parent="Enemies" instance=ExtResource("3_8m0mx")]
-position = Vector2(265, -28)
+position = Vector2(292, -199)
 
 [node name="Boss" parent="." instance=ExtResource("11_v33rh")]
 position = Vector2(125, -1070)
