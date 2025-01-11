@@ -1,0 +1,14 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtp7tlaafaxqb"]
+
+[ext_resource type="Script" path="res://Scripts/CoverGroup.gd" id="1_5ulr4"]
+[ext_resource type="PackedScene" uid="uid://7ht4jq1yda18" path="res://Prefabs/cover.tscn" id="2_d4bdi"]
+[ext_resource type="Texture2D" uid="uid://btt12au1d33me" path="res://Sprites/Enemies/Cover1.png" id="3_gp4ik"]
+[ext_resource type="Texture2D" uid="uid://bisxudhtvhm3d" path="res://Sprites/Enemies/Cover2.png" id="4_e41mh"]
+[ext_resource type="Texture2D" uid="uid://qsk470h2wseb" path="res://Sprites/Enemies/Cover3.png" id="5_pumym"]
+[ext_resource type="Texture2D" uid="uid://ywbxf7f4sojy" path="res://Sprites/Enemies/Cover4.png" id="6_cw35p"]
+
+[node name="CoverGroup" type="Node2D" groups=["damageable"]]
+texture_filter = 1
+script = ExtResource("1_5ulr4")
+cover = ExtResource("2_d4bdi")
+textures = Array[Texture]([ExtResource("3_gp4ik"), ExtResource("4_e41mh"), ExtResource("5_pumym"), ExtResource("6_cw35p")])

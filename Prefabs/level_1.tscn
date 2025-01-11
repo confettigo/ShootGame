@@ -1,6 +1,5 @@
 [gd_scene load_steps=10 format=4 uid="uid://71bjvujqyg16"]
 
-[ext_resource type="PackedScene" uid="uid://7ht4jq1yda18" path="res://Prefabs/cover.tscn" id="1_hb627"]
 [ext_resource type="PackedScene" uid="uid://c7a0y3mb6g6yh" path="res://Prefabs/Enemies/enemy.tscn" id="2_qcvst"]
 [ext_resource type="PackedScene" uid="uid://dd5ujr7ucprm1" path="res://Prefabs/Enemies/explosiveDog.tscn" id="3_8m0mx"]
 [ext_resource type="TileSet" uid="uid://djcxo0rd7pf3p" path="res://Prefabs/Tilesets/level_1.tres" id="6_2o8gs"]
@@ -8,16 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://dm6cxx1erwdn7" path="res://Prefabs/cameraLockTrigger.tscn" id="8_6p71o"]
 [ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Weapons/3_Flamethrower.tres" id="8_ny34e"]
 [ext_resource type="PackedScene" uid="uid://bqkmutbi3qqd5" path="res://Prefabs/checkpoint.tscn" id="10_nd1rf"]
+[ext_resource type="PackedScene" uid="uid://dtp7tlaafaxqb" path="res://Prefabs/coverGroup.tscn" id="10_otmc3"]
 [ext_resource type="PackedScene" uid="uid://bhmn5uqxcc1jp" path="res://Prefabs/Enemies/boss.tscn" id="11_v33rh"]
 
 [node name="Level 1" type="Node2D"]
 texture_filter = 1
-
-[node name="Cover" parent="." instance=ExtResource("1_hb627")]
-position = Vector2(114, -24)
-
-[node name="Cover2" parent="." instance=ExtResource("1_hb627")]
-position = Vector2(201, -213)
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -67,7 +61,7 @@ position = Vector2(186, -532)
 position = Vector2(80, -586)
 
 [node name="ExplosiveDog" parent="Enemies" instance=ExtResource("3_8m0mx")]
-position = Vector2(-23, 18)
+position = Vector2(-29, -74)
 
 [node name="ExplosiveDog2" parent="Enemies" instance=ExtResource("3_8m0mx")]
 position = Vector2(265, -28)
@@ -121,3 +115,11 @@ checkpointIndex = 1
 [node name="Checkpoint3" parent="CheckpointContainer" instance=ExtResource("10_nd1rf")]
 position = Vector2(120, -744)
 checkpointIndex = 2
+
+[node name="CoverGroup" parent="." instance=ExtResource("10_otmc3")]
+position = Vector2(81, -23)
+length = 4
+
+[node name="CoverGroup2" parent="." instance=ExtResource("10_otmc3")]
+position = Vector2(161, -207)
+length = 6
