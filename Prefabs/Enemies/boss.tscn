@@ -10,7 +10,6 @@ size = Vector2(141, 78)
 
 [node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["damageable"]]
 texture_filter = 1
-position = Vector2(404, 298)
 script = ExtResource("1_87y7s")
 health = NodePath("Health")
 speed = 60.0
@@ -19,11 +18,9 @@ shootingRange = 120.0
 projectileTemplate = ExtResource("2_hlcuf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_u6asj")
 
 [node name="Health" parent="." instance=ExtResource("3_kba6b")]
-position = Vector2(-404, -298)
 maxHealth = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

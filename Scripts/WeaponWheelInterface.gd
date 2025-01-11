@@ -15,7 +15,8 @@ var previousIndex = -1
 var selectDir : Vector2
 
 func _ready():
-	WeaponManager.onNewWeaponOwned.connect(refreshWheelPart)
+	WeaponManager.onCurrentWeaponChanged.connect(refreshWheelPart)
+	WeaponManager.onNewWeaponOwned.connect(unlockWheelPart)
 
 	background.visible = false
 	weaponWheelContainer.visible = false
@@ -62,7 +63,7 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_released("toggleWheel"):
 		setWheelState(false)
-		if previousIndex >= 0 && previousIndex != currentWheelPartIndex && WeaponManager.isWeaponOwned(previousIndex):
+		if previousIndex >= 0 && previousIndex != currentWheelPartIndex && WeaponManager.isWeaponOwned(previousIndex) && WeaponManager.weaponHasAmmo(previousIndex):
 			WeaponManager.changeWeaponIndex(previousIndex)
 			weaponWheelSpriteList[currentWheelPartIndex].self_modulate = Color.WHITE
 			currentWheelPartIndex = previousIndex
@@ -76,11 +77,13 @@ func resetPreviousWeaponWheelTile():
 	previousWheelSprite.position = weaponWheelOriginalPosition[previousIndex]
 	previousWheelSprite.z_index = 0
 
-func refreshWheelPart(index : int):
-	currentWheelPartIndex = index
-	weaponWheelSpriteList[WeaponManager.previousWeaponIndex].self_modulate = Color.WHITE
-	weaponWheelSpriteList[index].self_modulate = Color.DEEP_SKY_BLUE
+func unlockWheelPart(index : int):
 	weaponWheelSpriteList[index].get_child(0).modulate = Color.WHITE
+
+func refreshWheelPart(_currentWeapon : WeaponManager.PlayableWeapon):
+	currentWheelPartIndex = WeaponManager.currentWeaponIndex
+	weaponWheelSpriteList[WeaponManager.previousWeaponIndex].self_modulate = Color.WHITE
+	weaponWheelSpriteList[currentWheelPartIndex].self_modulate = Color.DEEP_SKY_BLUE
 
 func setWheelState(state : bool):
 	isWheelOpen = state
@@ -102,6 +105,12 @@ func selectWheelPart():
 
 func hoverWheelPart(index : int):
 	var currentWheelSprite = weaponWheelSpriteList[index]
-	currentWheelSprite.self_modulate = hoverWeaponColor
+	if index < WeaponManager.weaponList.size() - 1:
+		if WeaponManager.weaponHasAmmo(index):
+			currentWheelSprite.self_modulate = hoverWeaponColor
+		else:
+			currentWheelSprite.self_modulate = Color.DARK_RED
+	else:
+		currentWheelSprite.self_modulate = Color.DIM_GRAY
 	currentWheelSprite.position = weaponWheelOriginalPosition[index] + selectDir * 50
 	previousIndex = index

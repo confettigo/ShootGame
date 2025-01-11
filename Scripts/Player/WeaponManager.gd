@@ -85,3 +85,6 @@ func getWeapon(_weapon : Weapon):
 
 func isWeaponOwned(index : int) -> bool:
 	return index < playerWeaponList.size() && playerWeaponList[index].owned
+
+func weaponHasAmmo(index : int) -> bool:
+	return index < playerWeaponList.size() && playerWeaponList[index].ammo != 0
