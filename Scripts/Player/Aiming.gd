@@ -54,6 +54,8 @@ func _process(delta: float) -> void:
 
 	if !canShoot:
 		timer -= delta
+		if WeaponManager.currentWeapon.ammo == 0:
+			WeaponManager.changeWeaponIndex(0)
 		if timer <= 0 && WeaponManager.currentWeapon.ammo != 0:
 			canShoot = true
 
