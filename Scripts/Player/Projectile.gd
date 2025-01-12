@@ -25,7 +25,6 @@ func _on_projectile_body_entered(body:Node2D) -> void:
 	if body.is_in_group("bounds"):
 		queue_free()
 	if body.is_in_group("damageable"):
-		# print("Hit " + body.name)
 		queue_free()
 		var bodyHealth : Health = body.get_node("Health")
 		bodyHealth.hit(damage)

@@ -6,24 +6,24 @@
 [ext_resource type="Texture2D" uid="uid://c7onggf4sweb" path="res://Sprites/Enemies/boss.jpg" id="4_iwg2e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u6asj"]
-size = Vector2(141, 78)
+size = Vector2(69, 74)
 
 [node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["damageable"]]
 texture_filter = 1
 script = ExtResource("1_87y7s")
 health = NodePath("Health")
 speed = 60.0
-baseShootingCooldown = 0.01
-shootingRange = 120.0
 projectileTemplate = ExtResource("2_hlcuf")
+machineGunCooldown = 0.1
+machineGunReloadCooldown = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_u6asj")
 
 [node name="Health" parent="." instance=ExtResource("3_kba6b")]
-maxHealth = 30
+maxHealth = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-3.8147e-06, -3.75509e-06)
-scale = Vector2(0.384196, 0.212534)
+scale = Vector2(0.188, 0.2)
 texture = ExtResource("4_iwg2e")

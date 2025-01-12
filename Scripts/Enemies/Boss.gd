@@ -1,26 +1,46 @@
 extends Node
 
+#region Stats
+@export_category("Stats")
 @export var health : Health
 @export var speed : float = 30
 @export var baseDamageTime : float = 1
-@export var baseShootingCooldown : float = 2
-@export var shootingRange : float = 5
-@export var projectileTemplate : PackedScene
+@export var startRange : float = 200
+
 @onready var projectileContainer : Node2D = WorldManager.projectileContainer
-
 @onready var playerTarget : CharacterBody2D = PlayerManager.player
-
+var startingPosition : Vector2
 var targetPosition : Vector2
 var damagedTimer : float = 0
 var isDamaged = true
 
-var shootingTimer
+enum BOSS_PHASES {IDLE, START, PHASE_1, PHASE_2}
+var currentPhase : BOSS_PHASES = BOSS_PHASES.IDLE
 
+var centerNode : Vector2
+var corners : Array[Vector2]
+var cornersCopy
+@onready var moveToCornerTimer : Cooldown = Cooldown.new(7, setNewCorner)
+@onready var phaseTransitionTimer : Cooldown = Cooldown.new(2, changePhase.bind(BOSS_PHASES.PHASE_2), true) 
+#endregion
+
+#region Machine Gun
+@export_category("Machine Gun")
+@export var projectileTemplate : PackedScene
+@export var machineGunCooldown : float = 2
+@export var machineGunReloadCooldown : float = 1
+@export var machineGunBurstLength : int = 10
+@onready var reloadMachineGunTimer : Cooldown = Cooldown.new(machineGunReloadCooldown, reloadMachineGun)
+@onready var machineGunShootingTimer : Cooldown = Cooldown.new(machineGunCooldown, shootMachineGun)
+var machineGunShots : int
+#endregion
+@onready var flamethrowerShootingTimer : Cooldown = Cooldown.new(5, shootFlamethrower)
 func _ready():
-	targetPosition = self.position + Vector2.DOWN * 100
+	startingPosition = self.position
 	health.onHit.connect(onHit)
 	health.onDeath.connect(onDeath)
-	shootingTimer = 2
+
+	reset()
 
 func onHit():
 	isDamaged = true
@@ -39,19 +59,99 @@ func _process(delta):
 			self.modulate.a = 1.0
 			isDamaged = false
 
+	match currentPhase:
+		BOSS_PHASES.IDLE:
+			# START SHOULD BE ENABLED THROUGH BOSS TRIGGER!
+			if self.position.distance_to(playerTarget.position) < startRange:
+				changePhase(BOSS_PHASES.START)
+		BOSS_PHASES.START:
+			startPhase(delta)
+		BOSS_PHASES.PHASE_1:
+			phaseOne(delta)
+		BOSS_PHASES.PHASE_2:
+			phaseTwo(delta)
+	
+func changePhase(phase : BOSS_PHASES):
+	currentPhase = phase
+	print(BOSS_PHASES.keys()[currentPhase])
+
+	match currentPhase:
+		BOSS_PHASES.IDLE:
+			pass
+		BOSS_PHASES.START:
+			pass
+		BOSS_PHASES.PHASE_1:
+			centerNode = self.position
+			corners.append(self.position + Vector2(-80, -50)) # top left
+			corners.append(self.position + Vector2(80, -50)) # top right
+			corners.append(self.position + Vector2(80, 50)) # bottom right
+			corners.append(self.position + Vector2(-80, 50)) # bottom left
+			corners.shuffle()
+			cornersCopy = corners.duplicate()
+			health.invulnerable = false
+		BOSS_PHASES.PHASE_2:
+			setNewCorner()
+
+
+func startPhase(delta):
 	self.position = self.position.move_toward(targetPosition, delta * speed)
-	# self.position.x = ceil(self.position.x)
-	# self.position.y = ceil(self.position.y)
-	shootingTimer -= delta
+	if self.position == targetPosition:
+		changePhase(BOSS_PHASES.PHASE_1)
 
-	# range check
-	if self.position.distance_to(playerTarget.position) > shootingRange:
-		return
+func phaseOne(delta):
+	shootMachineGunBurst(delta)
+	flamethrowerShootingTimer.tick(delta)
+	phaseTransitionTimer.tick(delta)
 
-	if shootingTimer <= 0:
-		shootingTimer = baseShootingCooldown
+func phaseTwo(delta):
+	shootMachineGunBurst(delta)
+	flamethrowerShootingTimer.tick(delta)
+	self.position = self.position.move_toward(targetPosition, delta * speed)
+	if self.position == targetPosition:
+		moveToCornerTimer.tick(delta)
+
+func shootMachineGunBurst(delta):
+	if machineGunShots < machineGunBurstLength:
+		machineGunShootingTimer.tick(delta)
+	else:
+		reloadMachineGunTimer.tick(delta)
+
+func reloadMachineGun():
+	machineGunShots = 0
+
+func shootMachineGun():
+	machineGunShots += 1
+	var projectile : EnemyProjectile = projectileTemplate.instantiate()
+	projectileContainer.add_child(projectile)
+	projectile.position = self.position
+	projectile.setup((playerTarget.position - self.position).normalized())
+
+func shootFlamethrower():
+	var aimDir = (playerTarget.position - self.position).normalized()
+	for i in 6:
 		var projectile : EnemyProjectile = projectileTemplate.instantiate()
 		projectileContainer.add_child(projectile)
 		projectile.position = self.position
-		projectile.setup((playerTarget.position - self.position).normalized())
-		
+		projectile.setup(aimDir.rotated(deg_to_rad(-30 + i * 10)))
+
+func setNewCorner():
+	if corners.is_empty():
+		corners = cornersCopy.duplicate()
+		corners.shuffle()
+
+	var randIndex = randi() % corners.size()
+	if self.position == corners[randIndex]:
+		corners.remove_at(randIndex)
+	
+	targetPosition = corners.pop_front()
+
+func reset():
+	currentPhase = BOSS_PHASES.IDLE
+	self.position = startingPosition
+	targetPosition = self.position + Vector2.DOWN * 170
+	health.reset()
+	health.invulnerable = true
+	damagedTimer = 0
+	reloadMachineGunTimer.reset()
+	machineGunShootingTimer.reset()
+	flamethrowerShootingTimer.reset()
