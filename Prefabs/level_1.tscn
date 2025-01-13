@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://71bjvujqyg16"]
+[gd_scene load_steps=11 format=4 uid="uid://71bjvujqyg16"]
 
 [ext_resource type="PackedScene" uid="uid://c7a0y3mb6g6yh" path="res://Prefabs/Enemies/enemy.tscn" id="2_qcvst"]
 [ext_resource type="PackedScene" uid="uid://dd5ujr7ucprm1" path="res://Prefabs/Enemies/explosiveDog.tscn" id="3_8m0mx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cdqmaqurhrhwn" path="res://Prefabs/pickup.tscn" id="7_47u2s"]
 [ext_resource type="PackedScene" uid="uid://dm6cxx1erwdn7" path="res://Prefabs/cameraLockTrigger.tscn" id="8_6p71o"]
 [ext_resource type="Resource" uid="uid://dwxwgpxver3rv" path="res://Data/Weapons/3_Flamethrower.tres" id="8_ny34e"]
+[ext_resource type="PackedScene" uid="uid://betjqu5cjo16o" path="res://Prefabs/money.tscn" id="10_4s365"]
 [ext_resource type="PackedScene" uid="uid://bqkmutbi3qqd5" path="res://Prefabs/checkpoint.tscn" id="10_nd1rf"]
 [ext_resource type="PackedScene" uid="uid://dtp7tlaafaxqb" path="res://Prefabs/coverGroup.tscn" id="10_otmc3"]
 [ext_resource type="PackedScene" uid="uid://bhmn5uqxcc1jp" path="res://Prefabs/Enemies/boss.tscn" id="11_v33rh"]
@@ -128,3 +129,6 @@ position = Vector2(52, -143)
 length = 4
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="Money" parent="." instance=ExtResource("10_4s365")]
+position = Vector2(76, 25)

@@ -1,4 +1,4 @@
-extends Sprite2D
+extends Node2D
 
 @export var offsetHover : float
 @export var signE : float = 1

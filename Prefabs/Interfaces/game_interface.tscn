@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bb0hvulavh1h8"]
+[gd_scene load_steps=11 format=3 uid="uid://bb0hvulavh1h8"]
 
 [ext_resource type="Theme" uid="uid://c0awtjs5amksd" path="res://Fonts/theme.tres" id="1_yr12q"]
 [ext_resource type="Texture2D" uid="uid://cce52vfrxxtjf" path="res://Sprites/Player/smallbullet.png" id="2_kgkof"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://Scripts/Interface/WeaponWheelInterface.gd" id="5_akbpk"]
 [ext_resource type="Texture2D" uid="uid://cf7vkfb5kb7tv" path="res://Sprites/Wheel2.png" id="6_qvj7j"]
 [ext_resource type="Texture2D" uid="uid://cvtq6sj0sstt2" path="res://Sprites/white.png" id="8_b2tdd"]
+[ext_resource type="Script" path="res://Prefabs/Interfaces/MoneyInterface.gd" id="9_24vh6"]
+[ext_resource type="Texture2D" uid="uid://b2071ngm335nt" path="res://Sprites/Money1.png" id="9_kkyhp"]
 
 [node name="GameInterface" type="CanvasLayer"]
 
@@ -288,3 +290,39 @@ scale = Vector2(2, 2)
 pivot_offset = Vector2(192, 192)
 texture = ExtResource("6_qvj7j")
 stretch_mode = 5
+
+[node name="MoneyContainer" type="HBoxContainer" parent="." node_paths=PackedStringArray("moneyText")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1336.0
+offset_top = -108.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_yr12q")
+alignment = 2
+script = ExtResource("9_24vh6")
+moneyText = NodePath("MoneyCount")
+
+[node name="MoneyCount" type="Label" parent="MoneyContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 6
+theme_override_font_sizes/font_size = 66
+text = "123"
+vertical_alignment = 2
+
+[node name="Moneybag" type="TextureRect" parent="MoneyContainer"]
+layout_mode = 2
+texture = ExtResource("9_kkyhp")
+expand_mode = 3
+stretch_mode = 4

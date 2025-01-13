@@ -6,6 +6,7 @@ extends Node
 @export var baseShootingCooldown : float = 2
 @export var shootingRange : float = 5
 @export var projectileTemplate : PackedScene
+@export var moneyBag : PackedScene
 @onready var projectileContainer : Node2D = WorldManager.projectileContainer
 
 @onready var playerTarget : CharacterBody2D = PlayerManager.player
@@ -25,6 +26,10 @@ func onHit():
 	damagedTimer = baseDamageTime
 
 func onDeath():
+	if randi_range(0,10) >= 3:
+		var moneyDrop = moneyBag.instantiate()
+		projectileContainer.add_child(moneyDrop)
+		moneyDrop.position = self.position
 	queue_free()
 
 func _process(delta):

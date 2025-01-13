@@ -21,7 +21,6 @@ position = Vector2(-0.25, 0)
 shape = SubResource("RectangleShape2D_th6lv")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.85, 1)
 texture = ExtResource("3_iekt3")
 script = ExtResource("4_tg4ye")
 offsetHover = 5
@@ -29,7 +28,6 @@ offsetHover = 5
 [node name="Sprite2" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
-scale = Vector2(0.85, 1)
 texture = ExtResource("3_iekt3")
 script = ExtResource("4_tg4ye")
 offsetHover = -5.0

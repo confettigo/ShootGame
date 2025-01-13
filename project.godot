@@ -27,6 +27,7 @@ ParticleSystemManager="*res://Scripts/System/ParticleSystemManager.gd"
 Scheduler="*res://Scripts/System/Scheduler.gd"
 WeaponManager="*res://Scripts/Player/WeaponManager.gd"
 PauseManager="*res://Scripts/System/PauseManager.gd"
+MoneyManager="*res://Scripts/MoneyManager.gd"
 
 [debug]
 
