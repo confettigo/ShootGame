@@ -22,11 +22,11 @@ config/icon="res://Sprites/Enemies/hatDog.webp"
 CameraController="*res://Scripts/Camera/CameraController.gd"
 EnemyManager="*res://Scripts/Enemies/EnemyManager.gd"
 PlayerManager="*res://Scripts/Player/PlayerManager.gd"
-WorldManager="*res://Scripts/WorldManager.gd"
-ParticleSystemManager="*res://Scripts/ParticleSystemManager.gd"
-Scheduler="*res://Scripts/Scheduler.gd"
+WorldManager="*res://Scripts/System/WorldManager.gd"
+ParticleSystemManager="*res://Scripts/System/ParticleSystemManager.gd"
+Scheduler="*res://Scripts/System/Scheduler.gd"
 WeaponManager="*res://Scripts/Player/WeaponManager.gd"
-PauseManager="*res://Scripts/PauseManager.gd"
+PauseManager="*res://Scripts/System/PauseManager.gd"
 
 [debug]
 

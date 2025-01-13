@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhmn5uqxcc1jp"]
+[gd_scene load_steps=7 format=3 uid="uid://bhmn5uqxcc1jp"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Boss.gd" id="1_87y7s"]
 [ext_resource type="PackedScene" uid="uid://cbtnm7ps58w86" path="res://Prefabs/Projectiles/enemyprojectile.tscn" id="2_hlcuf"]
+[ext_resource type="PackedScene" uid="uid://bk7pvk7is58y" path="res://Prefabs/Projectiles/enemyTimedDamageArea.tscn" id="3_8dn5a"]
 [ext_resource type="PackedScene" uid="uid://cs033bg2tvaoe" path="res://Prefabs/health.tscn" id="3_kba6b"]
 [ext_resource type="Texture2D" uid="uid://c7onggf4sweb" path="res://Sprites/Enemies/boss.jpg" id="4_iwg2e"]
 
@@ -16,6 +17,7 @@ speed = 60.0
 projectileTemplate = ExtResource("2_hlcuf")
 machineGunCooldown = 0.1
 machineGunReloadCooldown = 3.0
+timedDamageAreaTemplate = ExtResource("3_8dn5a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdqmaqurhrhwn"]
 
-[ext_resource type="Script" path="res://Scripts/Pickup.gd" id="1_a604f"]
+[ext_resource type="Script" path="res://Scripts/Interactables/Pickup.gd" id="1_a604f"]
 [ext_resource type="Resource" uid="uid://c5c18kslkmmw2" path="res://Data/Weapons/2_Rifle.tres" id="2_jmeo8"]
 [ext_resource type="Texture2D" uid="uid://c1pomfppeet6v" path="res://Sprites/goofy.jpg" id="3_eas5p"]
 [ext_resource type="Texture2D" uid="uid://co26b5xcg2oyi" path="res://Sprites/Weapons/Rifle.png" id="3_iekt3"]

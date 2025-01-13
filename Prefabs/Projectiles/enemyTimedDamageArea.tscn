@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk7pvk7is58y"]
+
+[ext_resource type="Script" path="res://Scripts/Projectiles/EnemyTimedDamageArea.gd" id="1_0glrj"]
+[ext_resource type="Texture2D" uid="uid://cvtq6sj0sstt2" path="res://Sprites/white.png" id="2_bj80w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnjus"]
+
+[node name="EnemyTimedDamageArea" type="Area2D" node_paths=PackedStringArray("timedArea", "collider")]
+texture_filter = 1
+script = ExtResource("1_0glrj")
+damage = 1
+timedArea = NodePath("DamageTimerArea")
+collider = NodePath("CollisionShape2D")
+
+[node name="Area" type="Sprite2D" parent="."]
+self_modulate = Color(0.87, 0, 0, 0.462745)
+position = Vector2(-10, -10)
+scale = Vector2(20, 20)
+texture = ExtResource("2_bj80w")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dnjus")
+disabled = true
+
+[node name="DamageTimerArea" type="Node2D" parent="."]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="Area2" type="Sprite2D" parent="DamageTimerArea"]
+self_modulate = Color(0.88, 0, 0, 1)
+position = Vector2(-10, -10)
+scale = Vector2(20, 20)
+texture = ExtResource("2_bj80w")
+centered = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

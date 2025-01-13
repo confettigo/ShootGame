@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0uj1wwty4fmi"]
 
 [ext_resource type="PackedScene" uid="uid://bvptplpytivq6" path="res://Scenes/Scene.tscn" id="1_jrmfm"]
-[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_tgk22"]
+[ext_resource type="Script" path="res://Scripts/System/GameManager.gd" id="1_tgk22"]
 [ext_resource type="PackedScene" uid="uid://bb0hvulavh1h8" path="res://Prefabs/Interfaces/game_interface.tscn" id="2_046hn"]
 [ext_resource type="Shader" path="res://Shaders/Camera.gdshader" id="2_xv1jv"]
 [ext_resource type="PackedScene" uid="uid://clhg8hflmw124" path="res://Prefabs/Interfaces/debug_interface.tscn" id="4_jll8p"]

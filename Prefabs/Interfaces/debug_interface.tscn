@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://clhg8hflmw124"]
 
-[ext_resource type="Script" path="res://Scripts/DebugManager.gd" id="1_ybudo"]
+[ext_resource type="Script" path="res://Scripts/System/DebugManager.gd" id="1_ybudo"]
 [ext_resource type="FontFile" uid="uid://xlgd7pwiihn0" path="res://Fonts/8bit16.ttf" id="6_u63mh"]
 [ext_resource type="Theme" uid="uid://c0awtjs5amksd" path="res://Fonts/theme.tres" id="7_lcbv3"]
 
