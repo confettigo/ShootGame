@@ -62,6 +62,7 @@ scale = Vector2(0.875, 0.875)
 texture = ExtResource("6_pnmrb")
 
 [node name="Health" parent="Rifleman" instance=ExtResource("3_kba6b")]
+maxHealth = 30
 
 [node name="Flameman" type="StaticBody2D" parent="." groups=["damageable"]]
 position = Vector2(0, 37)
@@ -81,6 +82,7 @@ scale = Vector2(0.875, 0.875)
 texture = ExtResource("9_os2yf")
 
 [node name="Health" parent="Flameman" instance=ExtResource("3_kba6b")]
+maxHealth = 30
 
 [node name="Artillery" type="StaticBody2D" parent="." groups=["damageable"]]
 position = Vector2(0, -37)
@@ -101,3 +103,4 @@ scale = Vector2(0.875, 0.875)
 texture = ExtResource("9_os2yf")
 
 [node name="Health" parent="Artillery" instance=ExtResource("3_kba6b")]
+maxHealth = 30
