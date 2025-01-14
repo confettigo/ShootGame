@@ -5,12 +5,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnjus"]
 
-[node name="EnemyTimedDamageArea" type="Area2D" node_paths=PackedStringArray("timedArea", "collider")]
+[node name="EnemyTimedDamageArea" type="Area2D" node_paths=PackedStringArray("timedArea")]
 texture_filter = 1
 script = ExtResource("1_0glrj")
 damage = 1
 timedArea = NodePath("DamageTimerArea")
-collider = NodePath("CollisionShape2D")
 
 [node name="Area" type="Sprite2D" parent="."]
 self_modulate = Color(0.87, 0, 0, 0.462745)

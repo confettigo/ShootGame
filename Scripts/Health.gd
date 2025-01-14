@@ -8,6 +8,7 @@ var invulnerable : bool = false
 
 signal onHit
 signal onDeath
+signal onTest(Object)
 
 func _ready() -> void:
 	reset()

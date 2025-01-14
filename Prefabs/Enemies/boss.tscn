@@ -1,22 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhmn5uqxcc1jp"]
+[gd_scene load_steps=12 format=3 uid="uid://bhmn5uqxcc1jp"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Boss.gd" id="1_87y7s"]
 [ext_resource type="PackedScene" uid="uid://cbtnm7ps58w86" path="res://Prefabs/Projectiles/enemyprojectile.tscn" id="2_hlcuf"]
 [ext_resource type="PackedScene" uid="uid://bk7pvk7is58y" path="res://Prefabs/Projectiles/enemyTimedDamageArea.tscn" id="3_8dn5a"]
 [ext_resource type="PackedScene" uid="uid://cs033bg2tvaoe" path="res://Prefabs/health.tscn" id="3_kba6b"]
 [ext_resource type="Texture2D" uid="uid://c7onggf4sweb" path="res://Sprites/Enemies/boss.jpg" id="4_iwg2e"]
+[ext_resource type="Texture2D" uid="uid://c1pomfppeet6v" path="res://Sprites/goofy.jpg" id="6_g4fyp"]
+[ext_resource type="Texture2D" uid="uid://co26b5xcg2oyi" path="res://Sprites/Weapons/Rifle.png" id="6_pnmrb"]
+[ext_resource type="Script" path="res://Scripts/DamagedEffect.gd" id="6_rl287"]
+[ext_resource type="Texture2D" uid="uid://dakjshqfgfyae" path="res://Sprites/Weapons/Flamethrower.png" id="9_os2yf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u6asj"]
 size = Vector2(69, 74)
 
-[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["damageable"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_86023"]
+size = Vector2(28, 28)
+
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("health", "damagedEffect", "machineGunHealth", "machineGunDamagedEffect", "flamethrowerHealth", "flamethrowerDamagedEffect", "artilleryHealth", "artilleryDamagedEffect") groups=["damageable"]]
 texture_filter = 1
 script = ExtResource("1_87y7s")
 health = NodePath("Health")
-speed = 60.0
+damagedEffect = NodePath("Sprite2D")
+machineGunHealth = NodePath("Rifleman/Health")
+machineGunDamagedEffect = NodePath("Rifleman/Sprite2D2")
 projectileTemplate = ExtResource("2_hlcuf")
 machineGunCooldown = 0.1
 machineGunReloadCooldown = 3.0
+flamethrowerHealth = NodePath("Flameman/Health")
+flamethrowerDamagedEffect = NodePath("Flameman/Sprite2D2")
+artilleryHealth = NodePath("Artillery/Health")
+artilleryDamagedEffect = NodePath("Artillery/Sprite2D2")
 timedDamageAreaTemplate = ExtResource("3_8dn5a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -29,3 +42,62 @@ maxHealth = 100
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.188, 0.2)
 texture = ExtResource("4_iwg2e")
+script = ExtResource("6_rl287")
+
+[node name="Rifleman" type="StaticBody2D" parent="." groups=["damageable"]]
+position = Vector2(35, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rifleman"]
+shape = SubResource("RectangleShape2D_86023")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Rifleman"]
+position = Vector2(-0.0100657, -0.0120375)
+scale = Vector2(0.0201294, 0.0240757)
+texture = ExtResource("6_g4fyp")
+script = ExtResource("6_rl287")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rifleman"]
+position = Vector2(7.15256e-07, 9)
+scale = Vector2(0.875, 0.875)
+texture = ExtResource("6_pnmrb")
+
+[node name="Health" parent="Rifleman" instance=ExtResource("3_kba6b")]
+
+[node name="Flameman" type="StaticBody2D" parent="." groups=["damageable"]]
+position = Vector2(0, 37)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flameman"]
+shape = SubResource("RectangleShape2D_86023")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Flameman"]
+position = Vector2(-0.0100657, -0.0120375)
+scale = Vector2(0.0201294, 0.0240757)
+texture = ExtResource("6_g4fyp")
+script = ExtResource("6_rl287")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flameman"]
+position = Vector2(7.15256e-07, 9)
+scale = Vector2(0.875, 0.875)
+texture = ExtResource("9_os2yf")
+
+[node name="Health" parent="Flameman" instance=ExtResource("3_kba6b")]
+
+[node name="Artillery" type="StaticBody2D" parent="." groups=["damageable"]]
+position = Vector2(0, -37)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Artillery"]
+shape = SubResource("RectangleShape2D_86023")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Artillery"]
+position = Vector2(-0.0100657, -0.0120375)
+scale = Vector2(0.0201294, 0.0240757)
+texture = ExtResource("6_g4fyp")
+script = ExtResource("6_rl287")
+
+[node name="Sprite2D" type="Sprite2D" parent="Artillery"]
+position = Vector2(2, 7)
+rotation = -1.57079
+scale = Vector2(0.875, 0.875)
+texture = ExtResource("9_os2yf")
+
+[node name="Health" parent="Artillery" instance=ExtResource("3_kba6b")]

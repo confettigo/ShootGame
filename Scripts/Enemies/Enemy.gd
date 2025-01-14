@@ -50,9 +50,11 @@ func _process(delta):
 		return
 
 	if shootingTimer <= 0:
-		shootingTimer = baseShootingCooldown
-		var projectile : EnemyProjectile = projectileTemplate.instantiate()
-		projectileContainer.add_child(projectile)
-		projectile.position = self.position
-		projectile.setup((playerTarget.position - self.position).normalized())
+		shoot()
 		
+func shoot():
+	shootingTimer = baseShootingCooldown
+	var projectile : EnemyProjectile = projectileTemplate.instantiate()
+	projectileContainer.add_child(projectile)
+	projectile.position = self.position
+	projectile.setup((playerTarget.position - self.position).normalized())

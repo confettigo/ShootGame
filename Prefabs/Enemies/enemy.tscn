@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_mkarp"]
 [ext_resource type="PackedScene" uid="uid://cbtnm7ps58w86" path="res://Prefabs/Projectiles/enemyprojectile.tscn" id="2_bfng7"]
-[ext_resource type="PackedScene" path="res://Prefabs/health.tscn" id="3_aa0lv"]
+[ext_resource type="PackedScene" uid="uid://cs033bg2tvaoe" path="res://Prefabs/health.tscn" id="3_aa0lv"]
 [ext_resource type="PackedScene" uid="uid://betjqu5cjo16o" path="res://Prefabs/money.tscn" id="3_h8ucl"]
 [ext_resource type="Texture2D" uid="uid://ca3tgex1q8tej" path="res://Sprites/Enemies/tempEnemy.png" id="4_hb1wt"]
 

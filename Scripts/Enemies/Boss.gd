@@ -3,29 +3,32 @@ extends Node
 #region Stats
 @export_category("Stats")
 @export var health : Health
-@export var speed : float = 30
-@export var baseDamageTime : float = 1
+@export var baseSpeed : float = 30
 @export var startRange : float = 200
+@export var damagedEffect : DamagedEffect
 
 @onready var projectileContainer : Node2D = WorldManager.projectileContainer
 @onready var playerTarget : CharacterBody2D = PlayerManager.player
-var startingPosition : Vector2
-var targetPosition : Vector2
-var damagedTimer : float = 0
-var isDamaged = true
+@onready var startingPosition : Vector2 = self.position
+@onready var centerNode : Vector2 = self.position + Vector2.DOWN * 170
+@onready var targetPosition : Vector2 = centerNode
 
-enum BOSS_PHASES {IDLE, START, PHASE_1, PHASE_2}
-var currentPhase : BOSS_PHASES = BOSS_PHASES.IDLE
-
-var centerNode : Vector2
-var corners : Array[Vector2]
-var cornersCopy
+@onready var corners : Array[Vector2] = [Vector2(-80, -50), Vector2(80, -50), Vector2(80, 50), Vector2(-80, 50)]
+@onready var cornersCopy = corners.duplicate()
 @onready var moveToCornerTimer : Cooldown = Cooldown.new(7, setNewCorner)
 @onready var phaseTransitionTimer : Cooldown = Cooldown.new(2, changePhase.bind(BOSS_PHASES.PHASE_2), true) 
+@onready var currentSpeed = baseSpeed
+
+enum BOSS_PHASES {IDLE, START, PHASE_1, PHASE_2, PHASE_3}
+var currentPhase : BOSS_PHASES = BOSS_PHASES.IDLE
+var attackSpeed = 1
+var membersAlive = 0
 #endregion
 
 #region Machine Gun
 @export_category("Machine Gun")
+@export var machineGunHealth : Health
+@export var machineGunDamagedEffect : DamagedEffect
 @export var projectileTemplate : PackedScene
 @export var machineGunCooldown : float = 2
 @export var machineGunReloadCooldown : float = 1
@@ -36,45 +39,61 @@ var machineGunShots : int
 #endregion
 
 @export_category("Flamethrower")
+@export var flamethrowerHealth : Health
+@export var flamethrowerDamagedEffect : DamagedEffect
 @export var flamethrowerShootingCooldown : float = 5
 @onready var flamethrowerShootingTimer : Cooldown = Cooldown.new(flamethrowerShootingCooldown, shootFlamethrower)
 
 @export_category("Artillery")
+@export var artilleryHealth : Health
+@export var artilleryDamagedEffect  : DamagedEffect
 @export var timedDamageAreaTemplate : PackedScene
 @export var artilleryShootingCooldown : float = 8
 @onready var artilleryShootingTimer : Cooldown = Cooldown.new(artilleryShootingCooldown, shootArtillery)
 
 func _ready():
-	startingPosition = self.position
-	centerNode = self.position + Vector2.DOWN * 170
-	corners.append(centerNode + Vector2(-80, -50)) # top left
-	corners.append(centerNode + Vector2(80, -50)) # top right
-	corners.append(centerNode + Vector2(80, 50)) # bottom right
-	corners.append(centerNode + Vector2(-80, 50)) # bottom left
-	corners.shuffle()
-	cornersCopy = corners.duplicate()
-	health.onHit.connect(onHit)
+	health.onHit.connect(damagedEffect.onHit)
 	health.onDeath.connect(onDeath)
+	
+	machineGunHealth.onHit.connect(machineGunDamagedEffect.onHit)
+	machineGunHealth.onDeath.connect(onMachineGunDeath)
 
+	flamethrowerHealth.onHit.connect(flamethrowerDamagedEffect.onHit)
+	flamethrowerHealth.onDeath.connect(onFlamethrowerDeath)
+
+	artilleryHealth.onHit.connect(artilleryDamagedEffect.onHit)
+	artilleryHealth.onDeath.connect(onArtilleryDeath)
 	reset()
-
-func onHit():
-	isDamaged = true
-	damagedTimer = baseDamageTime
 
 func onDeath():
 	queue_free()
 
-func _process(delta):
-	if isDamaged:
-		if damagedTimer > 0:
-			damagedTimer -= delta
-			# change this to an animation
-			self.modulate.a = 0.3 if Engine.get_frames_drawn() % 10 == 0 else 1.0
-		else:
-			self.modulate.a = 1.0
-			isDamaged = false
+func onMemberDeath():
+	currentSpeed *= 1.5
+	attackSpeed *= 2
+	membersAlive -= 1
+	if membersAlive == 0:
+		changePhase(BOSS_PHASES.PHASE_3)
 
+func onMachineGunDeath():
+	onMemberDeath()
+	machineGunHealth.get_parent().process_mode = Node.PROCESS_MODE_DISABLED
+	machineGunHealth.get_parent().visible = false
+	# rifle drop
+
+func onFlamethrowerDeath():
+	onMemberDeath()
+	flamethrowerHealth.get_parent().process_mode = Node.PROCESS_MODE_DISABLED
+	flamethrowerHealth.get_parent().visible = false
+	# flamethrower drop
+
+func onArtilleryDeath():
+	onMemberDeath()
+	artilleryHealth.get_parent().process_mode = Node.PROCESS_MODE_DISABLED
+	artilleryHealth.get_parent().visible = false
+	# rocket launcher drop
+
+func _process(delta):
 	match currentPhase:
 		BOSS_PHASES.IDLE:
 			# START SHOULD BE ENABLED THROUGH BOSS TRIGGER!
@@ -86,6 +105,8 @@ func _process(delta):
 			phaseOne(delta)
 		BOSS_PHASES.PHASE_2:
 			phaseTwo(delta)
+		BOSS_PHASES.PHASE_3:
+			phaseThree(delta)
 	
 func changePhase(phase : BOSS_PHASES):
 	currentPhase = phase
@@ -93,18 +114,28 @@ func changePhase(phase : BOSS_PHASES):
 
 	match currentPhase:
 		BOSS_PHASES.IDLE:
-			pass
+			membersAlive = 3
+			self.position = startingPosition
+			health.invulnerable = true
+			machineGunHealth.invulnerable = true
+			flamethrowerHealth.invulnerable = true
+			artilleryHealth.invulnerable = true
 		BOSS_PHASES.START:
 			targetPosition = centerNode
-			pass
 		BOSS_PHASES.PHASE_1:
-			
-			health.invulnerable = false
+			machineGunHealth.invulnerable = false
+			flamethrowerHealth.invulnerable = false
+			artilleryHealth.invulnerable = false
 		BOSS_PHASES.PHASE_2:
 			setNewCorner()
+		BOSS_PHASES.PHASE_3:
+			health.invulnerable = false
+
+func moveToTarget(delta):
+	self.position = self.position.move_toward(targetPosition, delta * currentSpeed)
 
 func startPhase(delta):
-	self.position = self.position.move_toward(targetPosition, delta * speed)
+	moveToTarget(delta)
 	if self.position == targetPosition:
 		changePhase(BOSS_PHASES.PHASE_1)
 
@@ -114,14 +145,23 @@ func phaseOne(delta):
 
 func phaseTwo(delta):
 	attackLoop(delta)
-	self.position = self.position.move_toward(targetPosition, delta * speed)
+	moveToTarget(delta)
+	if self.position == targetPosition:
+		moveToCornerTimer.tick(delta)
+
+func phaseThree(delta):
+	moveToTarget(delta)
 	if self.position == targetPosition:
 		moveToCornerTimer.tick(delta)
 
 func attackLoop(delta):
-	shootMachineGunBurst(delta)
-	flamethrowerShootingTimer.tick(delta)
-	artilleryShootingTimer.tick(delta)
+	delta *= attackSpeed
+	if machineGunHealth.get_parent().visible:
+		shootMachineGunBurst(delta)
+	if flamethrowerHealth.get_parent().visible:
+		flamethrowerShootingTimer.tick(delta)
+	if artilleryHealth.get_parent().visible:
+		artilleryShootingTimer.tick(delta)
 
 func shootMachineGunBurst(delta):
 	if machineGunShots < machineGunBurstLength:
@@ -136,26 +176,26 @@ func shootMachineGun():
 	machineGunShots += 1
 	var projectile : EnemyProjectile = projectileTemplate.instantiate()
 	projectileContainer.add_child(projectile)
-	projectile.position = self.position
+	projectile.position = machineGunHealth.global_position
 	projectile.setup((playerTarget.position - self.position).normalized())
 
 func shootFlamethrower():
 	var aimDir = (playerTarget.position - self.position).normalized()
-	for i in 6:
+	for i in 5:
 		var projectile : EnemyProjectile = projectileTemplate.instantiate()
 		projectileContainer.add_child(projectile)
-		projectile.position = self.position
-		projectile.setup(aimDir.rotated(deg_to_rad(-30 + i * 10)))
+		projectile.position = flamethrowerHealth.global_position
+		projectile.setup(aimDir.rotated(deg_to_rad(-20 + i * 10)))
 
 func shootArtillery():
-	for i in 10:
+	for i in 5:
 		var enemyTimedDamageArea : EnemyTimedDamageArea = timedDamageAreaTemplate.instantiate()
 		projectileContainer.add_child(enemyTimedDamageArea)
 		var angle := randf_range(0, TAU)
 		var distance := randi_range(0, 70)
 		var randomPos = playerTarget.position + distance * Vector2.from_angle(angle)
 		enemyTimedDamageArea.position = randomPos
-		enemyTimedDamageArea.setup()
+		enemyTimedDamageArea.setup(randf_range(0, 1), 2)
 
 func setNewCorner():
 	if corners.is_empty():
@@ -163,20 +203,31 @@ func setNewCorner():
 		corners.shuffle()
 
 	var randIndex = randi() % corners.size()
-	if self.position == corners[randIndex]:
+	if self.position == self.position + corners[randIndex]:
 		corners.remove_at(randIndex)
 	
-	targetPosition = corners.pop_front()
+	targetPosition = centerNode + corners.pop_front()
 
 func reset():
-	currentPhase = BOSS_PHASES.IDLE
-	self.position = startingPosition
-	targetPosition = centerNode
-	damagedTimer = 0
-	health.invulnerable = true
+	changePhase(BOSS_PHASES.IDLE)
+
+	corners.shuffle()
+	currentSpeed = baseSpeed
+	attackSpeed = 1
 	health.reset()
+	machineGunHealth.reset()
+	flamethrowerHealth.reset()
+	artilleryHealth.reset()
+
 	phaseTransitionTimer.reset()
 	reloadMachineGunTimer.reset()
 	machineGunShootingTimer.reset()
 	flamethrowerShootingTimer.reset()
 	artilleryShootingTimer.reset()
+
+	machineGunHealth.get_parent().process_mode = Node.PROCESS_MODE_INHERIT
+	machineGunHealth.get_parent().visible = true
+	flamethrowerHealth.get_parent().process_mode = Node.PROCESS_MODE_INHERIT
+	flamethrowerHealth.get_parent().visible = true
+	artilleryHealth.get_parent().process_mode = Node.PROCESS_MODE_INHERIT
+	artilleryHealth.get_parent().visible = true
